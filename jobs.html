@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeeasy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1f4ff;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .hero {
+            background-color: #e0e7ff;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .office {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .office h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .office address {
+            font-style: normal;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .office-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .office-images img {
+            width: calc(50% - 10px);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .office-images img {
+                width: calc(100% - 10px);
+            }
+        }
+
+        .job-board {
+            background-color: #e0e7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .job-board h2 {
+            font-size: 2em;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .job-search {
+            display: inline-block;
+        }
+
+        .job-search input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .job-list {
+            margin-top: 20px;
+        }
+
+        .job-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .job-list th, .job-list td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .job-list th {
+            background-color: #f1f4ff;
+            font-weight: bold;
+        }
+
+        .job-list td a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .job-list td a:hover {
+            text-decoration: underline;
+        }
+
+        .job-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .job-details h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .job-details p, .job-details ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .job-details ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .full-time-section {
+            background-color: #e0e7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .full-time-section h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .full-time-section p, .full-time-section ul {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .full-time-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .application-form {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    width: 100%; /* Ensure full width within the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.application-form h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.application-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left;
+    color: #555;
+}
+
+.application-form input[type="text"],
+.application-form input[type="email"],
+.application-form input[type="tel"],
+.application-form input[type="url"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+.application-form input[type="text"]:focus,
+.application-form input[type="email"]:focus,
+.application-form input[type="tel"]:focus,
+.application-form input[type="url"]:focus {
+    border-color: #1e90ff;
+    outline: none;
+}
+
+.file-upload {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 2px dashed #1e90ff;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #666;
+    transition: background-color 0.3s, border-color 0.3s;
+    background-color: #f9f9f9;
+}
+
+.file-upload-label {
+    flex-grow: 1;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.browse-button {
+    background-color: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.application-form button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s;
+}
+
+.application-form button:hover {
+    background-color: #1c86ee;
+}
+
+    .contact-info {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Space out the items */
+    background-color: #fff; /* Background color */
+    padding: 20px; /* Padding around the section */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+}
+
+.contact-info .logo {
+    width: 100px; /* Adjust logo size */
+}
+
+.contact-info div {
+    text-align: right; /* Align text to the right */
+}
+
+.contact-info p {
+    margin: 5px 0; /* Margin for spacing */
+    font-size: 1.2em; /* Font size for paragraphs */
+    color: #666; /* Text color */
+}
+
+.contact-info a {
+    color: #1e90ff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
+
+.contact-info a:hover {
+    color: #1c86ee; /* Hover color */
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="contact-info">
+            <img src="https://interfaces-cdn.zapier.com/53ea9a39-7537-4ec7-8eae-02e11ad81cf4/1631302577842.jpeg" alt="homeeasy logo" class="logo">
+            <div>
+                <p>🌐 <a href="https://www.homeeasy.com" target="_blank">homeeasy.com</a></p>
+                <p>📍 Karachi/Lahore</p>
+            </div>
+        </section>
+        <section class="hero">
+            <h1>Join Homeeasy and Shape the Future of Real Estate</h1>
+            <p>Home Easy is a technology-enabled real estate services firm. We use proprietary AI technology to analyze online and offline data in order to identify the best value apartments in Class A Multi-family properties. The firm also uses bots to alleviate the burden of remedial work from brokers in local partner brokerage firms, freeing them up for the most focused, well-informed, and dedicated client interactions. The company operates as a technology and marketing services provider in tandem with real estate, mortgage, and insurance brokerages in IL, TX, CO, AZ, and GA.</p>
+        </section>
+        <section class="office">
+            <h2>Our Office</h2>
+            <address>
+                Old Airport Building, 69 Abid Majeed Rd, Cantonment, Lahore, Punjab 54000
+            </address>
+            <div class="office-images">
+                <img src="https://interfaces-cdn.zapier.com/56649bbd-315f-44f8-a92a-fb8b4e41835f/Untitleddesign.jpg" alt="Office exterior">
+            </div>
+        </section>
+        <section class="job-board">
+            <h2>Job Board</h2>
+            <div class="job-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Job Type</th>
+                            <th>View Job</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sales Associate</td>
+                            <td>Full-Time</td>
+                            <td><a href="#job-details">View Job</a></td>
+                            <td>Karachi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="job-details" class="job-details">
+            <h2>Sales Associate Who We're Looking For :</h2>
+            
+            <ul>
+                <li><strong>Sales Savvy:</strong> Proficient in conducting sales calls to effectively rent properties across diverse regions in the USA, utilizing persuasive techniques to close deals and foster strong client relationships.</li>
+                <li><strong>Strategic Sellers:</strong> Experienced in inside sales, you focus on creating memorable customer journeys, not just closing deals.</li>
+                <li><strong>Goal Smashers:</strong> You're ambitious, eager to exceed targets and thrive in a fast-paced setting.</li>
+                <li><strong>Communication Experts:</strong> Skilled in writing and verbal pitches, you engage and persuade effectively.</li>
+                <li><strong>Self-Starters:</strong> You excel independently, driving initiatives in a high-energy environment.</li>
+                <li><strong>Customer Champions:</strong> With a customer-first mindset, you ensure satisfaction and mutual success.</li>
+                <li><strong>Quick Learners:</strong> Adaptable to the evolving real estate market, keeping clients informed and engaged.</li>
+                <li><strong>Career-Focused:</strong> Seeking not just a job, but a path to grow, improve, and scale your skills.</li>
+            </ul>
+            <h2>Our Offer:</h2>
+            <ul>
+                <li><strong>Competitive Compensation:</strong> Strong salary, commission, and incentives aligned with your long term Financial Goals.</li>
+                <li><strong>Career Growth:</strong> Opportunities to progress from Sales Representative to Entrepreneur in Residence, with a clear trajectory for advancement.</li>
+                <li><strong>Unique Culture:</strong> An independent company led by a visionary founder, committed to staff and customer well-being.</li>
+            </ul>
+        </section>
+        
+        <section class="application-form">
+            <h2>Apply for the Role</h2>
+            <form action="/hiring/resumes" method="post" enctype="multipart/form-data">
+                <label for="first-name">First Name (required)</label>
+                <input type="text" id="first-name" name="first-name" required>
+        
+                <label for="last-name">Last Name (required)</label>
+                <input type="text" id="last-name" name="last-name" required>
+        
+                <label for="email">Email (required)</label>
+                <input type="email" id="email" name="email" required>
+        
+                <label for="phone">Phone (required)</label>
+                <input type="tel" id="phone" name="phone" required>      
+        
+                <label for="resume">Resume/CV (required)</label>
+                <div class="file-upload" onclick="document.getElementById('resume').click();">
+                    <span class="file-upload-label">Drag and drop files here</span>
+                    <button type="button" class="browse-button" onclick="document.getElementById('resume').click();">Browse files</button>
+                    <input type="file" id="resume" name="resume" required style="display:none;">
+                </div>
+                
+                
+                
+                <label for="linkedin">LinkedIn Profile (required)</label>
+                <input type="url" id="linkedin" name="linkedin" required>
+        
+                <label for="city">City (required)</label>
+                <input type="text" id="city" name="city" required>
+        
+                <button type="submit" value="apply">Apply</button>
+            </form>
+        </section>
+        
+    </div>
+</body>
+</html>
