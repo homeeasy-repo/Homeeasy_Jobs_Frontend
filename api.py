@@ -10,7 +10,7 @@ CORS(app)  # Enable CORS
 @app.route("/hiring/resumesubmission", methods=["GET", "POST"])
 def index():
     if request.method == 'GET':
-        return render_template('jobs.html')
+        return render_template('index.html')
     elif request.method == 'POST':
         try:
             first_name = request.form['first-name']
