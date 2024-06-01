@@ -3,7 +3,7 @@ import traceback
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/hiring/resumes", methods=["GET", "POST"])
 def index():
     if request.method == 'GET':
         return render_template('index.html')
