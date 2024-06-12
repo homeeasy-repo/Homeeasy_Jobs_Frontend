@@ -21,15 +21,35 @@ header {
 }
 
 .hero {
-    background-color: #e0e7ff;
-    padding: 40px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    background-image: url('pexels-hbozman-1058759.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No repeat */
+    padding: 40px 20px; /* Padding */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Margin at the bottom */
+    color: white; /* Text color */
+    position: relative; /* Create containing block */
+    text-align: center; /* Center-align text */
+}
+
+.hero::before {
+    content: ''; /* Empty pseudo-element */
+    position: absolute; /* Position absolutely */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    right: 0; /* Align to right */
+    bottom: 0; /* Align to bottom */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    border-radius: 8px; /* Match border radius */
+    z-index: 0; /* Behind text */
 }
 
 .hero h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    position: relative; /* Stack text above the overlay */
+    z-index: 1; /* Ensure text is above the overlay */
 }
 
 .hero p {
@@ -37,6 +57,8 @@ header {
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
+    position: relative; /* Stack text above the overlay */
+    z-index: 1; /* Ensure text is above the overlay */
 }
 
 .office {
@@ -59,21 +81,32 @@ header {
 .office-images {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .office-images img {
-    width: calc(50% - 10px);
+    width: calc(33.333% - 10px);
     border-radius: 8px;
+    object-fit: cover;
+    height: 250px; /* Adjust height as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
     .office-images img {
-        width: calc(100% - 10px);
+        width: calc(50% - 10px);
     }
 }
 
+@media (max-width: 480px) {
+    .office-images img {
+        width: calc(100% - 10px);
+    }
+}
 .job-board {
     background-color: #e0e7ff;
     padding: 20px;
@@ -134,15 +167,17 @@ header {
     margin-top: 20px;
 }
 
-.job-details h2 {
+.job-details h2, .job-details h3 {
     font-size: 2em;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .job-details p, .job-details ul {
     text-align: left;
     max-width: 800px;
     margin: 0 auto 20px;
+    
 }
 
 .job-details ul {
@@ -278,23 +313,29 @@ background-color: #1c86ee;
 }
 
 .contact-info {
-display: flex; /* Use flexbox for layout */
-align-items: center; /* Align items vertically in the center */
-justify-content: space-between; /* Space out the items */
-background-color: #fff; /* Background color */
-padding: 20px; /* Padding around the section */
-border-radius: 8px; /* Rounded corners */
-margin-bottom: 20px; /* Space below the section */
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Space out the items */
+    background-color: #ffffff; /* Background color */
+    padding: 20px; /* Padding around the section */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
 }
 
 .contact-info .logo {
-width: 100px; /* Adjust logo size */
+    width: 150px; /* Adjust logo size */
+    order: 2; /* Move logo to the right */
+    border-radius: 50%; /* Make the logo round */
+    overflow: hidden; /* Ensure the image fits within the border */
 }
 
+
 .contact-info div {
-text-align: right; /* Align text to the right */
+    text-align: left; /* Align text to the left */
+    order: 1; /* Move text to the left */
 }
+
 
 .contact-info p {
 margin: 5px 0; /* Margin for spacing */
@@ -311,5 +352,32 @@ transition: color 0.3s; /* Smooth transition for color change */
 .contact-info a:hover {
 color: #1c86ee; /* Hover color */
 }
+
+/* Back to Home Arrow */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color:  rgb(30, 30, 70);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-home:hover {
+    background-color: #f0f0f0;
+}
+
+.back-to-home::before {
+    content: "↩"; /* Arrow icon */
+}
+
 
 

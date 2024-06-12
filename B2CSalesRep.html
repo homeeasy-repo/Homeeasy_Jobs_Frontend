@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeeasy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-to-home" title="Back to Home"></a>
+        <section class="contact-info">
+            <div>
+                <p>🌐 <a href="https://www.homeeasy.com" target="_blank">homeeasy.com</a></p>
+                <p>📍 Karachi/Lahore</p>
+            </div>
+            <img src="https://interfaces-cdn.zapier.com/53ea9a39-7537-4ec7-8eae-02e11ad81cf4/1631302577842.jpeg"
+                alt="homeeasy logo" class="logo">
+        </section>
+        <section id="job-details" class="job-details">
+            <h2>US Market B2C Sales Representative</h2>
+            <p>We are looking for an ambitious individual to join our rapidly growing tech-enabled real estate service business, Home Easy, Inc. We have been active for 5 years and have been consistently profitable with explosive revenue growth in this period.</p>
+            <p>We are offering a full-time salaried position with benefits and packages, and our average sales representative produces 3X the commissions of the top-performing independents in the domestic market. Our unique approach to real estate brokerage leverages specialization, conversational AI, and automation in all that we do.</p>
+            <p>In this role, you will be selling B2C directly into the US market via phone, email, and SMS. You will have the opportunity to work with the fastest-growing real estate business in the US (1mn + renters processed a year), and benefit from a competitive base salary and commission plans at a market level, as well as aggressive long-term incentive plans designed to help you achieve financial freedom.</p>
+        
+            <h3>Requirements:</h3>
+            <ul>
+                <li><strong>Inside sales experience</strong> to US/International Customers (optional, good to have)</li>
+                <li><strong>Extremely strong written communication</strong></li>
+                <li><strong>Attentiveness and follow-through</strong></li>
+                <li><strong>Strong sense of ownership</strong>, able to work independently</li>
+                <li><strong>Aggressive customer-centric individual</strong></li>
+                <li><strong>Strong learner</strong> who can get up to speed and stay abreast of changing market dynamics</li>
+                <li><strong>Growth mindset</strong></li>
+            </ul>
+        
+            <h3>Job Details:</h3>
+            <ul>
+                <li><strong>Job Types:</strong> Full-time, Permanent</li>
+                <li><strong>Working Hours:</strong> US Central Time hours, Night Shift</li>
+                <li><strong>Location:</strong> Lahore onsite application, Gulberg</li>
+                <li><strong>Pay:</strong> Rs100,000.00 - Rs180,000.00 per month</li>
+                <li><strong>Language:</strong> English (Required)</li>
+            </ul>
+        </section>
+        <section class="application-form">
+            <h2>Apply for the Role</h2>
+            <form action="http://127.0.0.1:5000/hiring/resumes" method="post" enctype="multipart/form-data">
+                <label for="first-name">First Name (required)</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="last-name">Last Name (required)</label>
+                <input type="text" id="last-name" name="last-name" required>
+
+                <label for="email">Email (required)</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone (required)</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="resume">Resume/CV (required)</label>
+                <div class="file-upload" onclick="document.getElementById('resume').click();">
+                    <span class="file-upload-label" >Drag and drop files here</span>
+                    <button type="button" class="browse-button"
+                        onclick="document.getElementById('resume').click();" style="background-color: rgb(30, 30, 70);">Browse files</button>
+                    <input type="file" id="resume" name="resume" required style="display:none;">
+                </div>
+
+
+
+                <label for="linkedin">LinkedIn Profile (required)</label>
+                <input type="url" id="linkedin" name="linkedin" required>
+
+                <label for="city">City (required)</label>
+                <input type="text" id="city" name="city" required>
+
+                <button type="submit" value="apply" style="background-color: rgb(30, 30, 70);">Apply</button>
+            </form>
+        </section>
+
+        
+
+
+       
+        
+    </div>
+
+
+</body>
+
+</html>
