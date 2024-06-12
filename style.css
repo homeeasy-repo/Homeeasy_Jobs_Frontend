@@ -372,7 +372,7 @@ color: #1c86ee; /* Hover color */
 }
 
 .back-to-home:hover {
-    background-color: #f0f0f0;
+    background-color:rgb(46, 46, 232) ;
 }
 
 .back-to-home::before {
