@@ -381,5 +381,40 @@ color: #1c86ee; /* Hover color */
     content: "↩"; /* Arrow icon */
 }
 
+.zoom-image {
+    width: calc(33.333% - 10px);
+    border-radius: 8px;
+    object-fit: cover;
+    height: 250px; /* Adjust height as needed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    cursor: zoom-in; /* Indicate zoom on hover */
+}
+
+.zoom-image:hover {
+    transform: scale(1.1); /* Zoom effect */
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5); /* Glow effect */
+    z-index: 1; /* Ensure the image appears above other elements */
+    cursor: pointer;
+}
+.zoom-image:active {
+    transform: scale(2); /* Zoom in */
+    z-index: 1000; /* Bring to front */
+    position: relative;
+    cursor: zoom-out; /* Change cursor */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .zoom-image {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .zoom-image {
+        width: calc(100% - 10px);
+    }
+}
 
 
