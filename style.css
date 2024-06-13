@@ -221,12 +221,13 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 border: 1px solid #e0e0e0;
 width: 100%; /* Ensure full width within the container */
 box-sizing: border-box; /* Include padding and border in the element's total width and height */
+
 }
 
 .application-form h2 {
 font-size: 2.5em;
 margin-bottom: 30px;
-color: #333;
+color:#1e1e46;
 }
 
 .application-form label {
@@ -418,3 +419,41 @@ color: #1c86ee; /* Hover color */
 }
 
 
+.about-us {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.about-us h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #1e1e46;
+}
+
+.about-us .video-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+
+.about-us .video-wrapper iframe {
+    width: 560px; /* Set width */
+    height: 315px; /* Set height */
+    border: solid  #1e1e46;
+    border-width: 5px;
+    border-radius: 20px;
+    
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-us .video-wrapper iframe {
+        width: 100%;
+        height: auto;
+    }
+}
