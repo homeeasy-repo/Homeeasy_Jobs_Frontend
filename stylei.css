@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: url('pexels-quang-vuong-724225078-20627337.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding: 20px;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.logo {
+    font-size: 4em;
+    margin: 0;
+    color: #4A4A99;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin: 0;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+}
+
+.search-button {
+    background-color: #004e64;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+nav .nav-item .nav-link {
+    color: #ffffff;
+    font-size: 1em;
+}
+
+nav .nav-item .nav-link.active {
+    text-decoration: underline;
+}
+
+.main {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+nav .nav-item .nav-link:hover {
+    color: rgb(66, 66, 241);
+}
+
+.about-us {
+    background: rgba(0, 123, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.about-us h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    line-height: 1.6;
+    font-size: 1.2em;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}

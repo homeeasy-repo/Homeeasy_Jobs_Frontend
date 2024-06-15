@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings - Home Easy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styleF.css">
+</head>
+<body>
+    <div class="container form_border">
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home Page</a></li>
+                <li class="nav-item"><a class="nav-link" href="work_us.html">Why Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="listings.html">Job Listings</a></li>
+            </ul>
+        </nav>
+        <section class="application-form">
+            <h2>Apply for the Role</h2>
+            <form action="http://127.0.0.1:5000/hiring/resumes" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="first-name">First Name (required)</label>
+                    <input type="text" class="form-control" id="first-name" name="first-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name (required)</label>
+                    <input type="text" class="form-control" id="last-name" name="last-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email (required)</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (required)</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV (required)</label>
+                    <div class="file-upload" onclick="document.getElementById('resume').click();">
+                        <span class="file-upload-label">Drag and drop files here</span>
+                        <button type="button" class="browse-button " style="background-color: rgb(30, 30, 70)" onclick="document.getElementById('resume').click();">Browse files</button>
+                        <input type="file" class="form-control-file" id="resume" name="resume" required style="display:none;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile (required)</label>
+                    <input type="url" class="form-control" id="linkedin" name="linkedin" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City (required)</label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="background-color: rgb(30, 30, 70);">Apply</button>
+            </form>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

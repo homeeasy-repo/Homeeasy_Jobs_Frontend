@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #2b2b2b;
+    background: #ffffff;
+}
+
+nav {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #2b2b2b;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+nav ul li a.active {
+    text-decoration: underline;
+}
+nav ul li a:hover {
+    color: rgb(66, 66, 241);
+}
+main.job-listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 20px;
+}
+
+.left-section, .right-section {
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.left-section h2, .right-section h1 {
+    color: #4a4a99;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.left-section ul, .right-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.left-section ul li, .right-section ul li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.right-section h1 {
+    font-size: 2.5em;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.navbar-nav .nav-link:hover {
+    color:rgb(119, 119, 251) ; /* Change this color to whatever you prefer for the hover effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .left-section, .right-section {
+        width: 100%;
+    }
+}
