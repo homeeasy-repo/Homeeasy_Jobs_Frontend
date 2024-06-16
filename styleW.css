@@ -152,5 +152,6 @@ nav ul li a:hover {
 @media (max-width: 480px) {
     .zoom-image {
         width: calc(100% - 10px);
+        margin-bottom: 20px;
     }
 }
