@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f4ff;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.job-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.job-details h2, .job-details h3 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+    color:  rgb(30, 30, 70);
+}
+
+
+.job-details p, .job-details ul {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    
+}
+nav {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #2b2b2b;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+nav ul li a.active {
+    text-decoration: underline;
+}
+nav ul li a:hover {
+    color: rgb(66, 66, 241);
+}
