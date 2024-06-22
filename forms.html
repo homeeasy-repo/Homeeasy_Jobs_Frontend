@@ -168,6 +168,11 @@
             `;
             document.getElementById('submissionMessage').innerHTML = message;
             $('#submissionModal').modal('show');
+
+            // After showing the modal, submit the form using JavaScript
+            setTimeout(() => {
+                form.submit();
+            }, 500); // Delay form submission to allow the user to see the modal
         }
     </script>
 </body>
