@@ -74,7 +74,7 @@
                     <label for="city">City (required)</label>
                     <input type="text" class="form-control" id="city" name="city" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="background-color: rgb(30, 30, 70);" onclick="validateForm(event)">Apply</button>
+                <button type="submit" class="btn btn-primary" style="background-color: rgb(30, 30, 70);">Apply</button>
             </form>
         </section>
     </div>
@@ -144,36 +144,46 @@
             updateFileLabel(); // Update the label
         }
 
-        function validateForm(event) {
-            const form = document.getElementById('job-application-form');
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-                form.classList.add('was-validated');
-            } else {
-                showModal(event);
-            }
-        }
-
-        function showModal(event) {
+        document.getElementById('job-application-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const form = document.getElementById('job-application-form');
-            const email = form.elements['email'].value;
-            const message = `
-                Thank you for your submission and interest in joining our team at Home Easy!
-                Please check your email at ${email} for next steps.
-                You would have received an email with the subject line: “CSE Job Assessment” and a unique ID to complete our assessment.
-                Please check spam folder as well.
-                For more information on the hiring process and roles at Home Easy as well as our work environment please see: <a href="https://www.instagram.com/jobs.homeeasy/" target="_blank">jobs.homeeasy/instagram</a>
-            `;
-            document.getElementById('submissionMessage').innerHTML = message;
-            $('#submissionModal').modal('show');
 
-            // After showing the modal, submit the form using JavaScript
-            setTimeout(() => {
-                form.submit();
-            }, 500); // Delay form submission to allow the user to see the modal
-        }
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                const email = form.elements['email'].value;
+                const message = `
+                    Thank you for your submission and interest in joining our team at Home Easy!
+                    Please check your email at ${email} for next steps.
+                    You would have received an email with the subject line: “CSE Job Assessment” and a unique ID to complete our assessment.
+                    Please check spam folder as well.
+                    For more information on the hiring process and roles at Home Easy as well as our work environment please see: <a href="https://www.instagram.com/jobs.homeeasy/" target="_blank">jobs.homeeasy/instagram</a>
+                `;
+                document.getElementById('submissionMessage').innerHTML = message;
+                $('#submissionModal').modal('show');
+                form.reset(); // Reset form after submission
+                updateFileLabel(); // Reset file upload status
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const email = form.elements['email'].value;
+                const message = `
+                    Thank you for your submission and interest in joining our team at Home Easy!
+                    Please check your email at ${email} for next steps.
+                    You would have received an email with the subject line: “CSE Job Assessment” and a unique ID to complete our assessment.
+                    Please check spam folder as well.
+                    For more information on the hiring process and roles at Home Easy as well as our work environment please see: <a href="https://www.instagram.com/jobs.homeeasy/" target="_blank">jobs.homeeasy/instagram</a>
+                `;
+                document.getElementById('submissionMessage').innerHTML = message;
+                $('#submissionModal').modal('show');
+                form.reset(); // Reset form after submission
+                updateFileLabel(); // Reset file upload status
+            });
+        });
     </script>
 </body>
 </html>
