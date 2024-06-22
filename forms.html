@@ -16,6 +16,18 @@
             background-color: rgb(30, 30, 70);
             color: white;
         }
+        .file-upload-label {
+            color: grey;
+        }
+        .file-upload {
+            border: 2px dashed grey;
+            padding: 20px;
+            text-align: center;
+        }
+        .file-upload.dragover {
+            border-color: blue;
+            background-color: #f0f8ff;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +41,7 @@
         </nav>
         <section class="application-form">
             <h2>Apply for the Role</h2>
-            <form id="job-application-form" action="https://emailcentral.herokuapp.com/hiring/jobssubmission" method="post" enctype="multipart/form-data">
+            <form id="job-application-form" action="https://emailcentral.herokuapp.com/hiring/jobssubmission" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="first-name">First Name (required)</label>
                     <input type="text" class="form-control" id="first-name" name="first-name" required>
@@ -48,11 +60,10 @@
                 </div>
                 <div class="form-group">
                     <label for="resume">Resume/CV (required)</label>
-                    <div class="file-upload" onclick="document.getElementById('resume').click();">
-                        <span class="file-upload-label">Drag and drop files here</span>
-                        <button type="button" id="browse-button" class="browse-button" style="background-color: rgb(30, 30, 70)" onclick="document.getElementById('resume').click();">Browse files</button>
+                    <div class="file-upload" id="file-upload" ondrop="handleFileDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                        <span class="file-upload-label" id="file-upload-label">Drag and drop files here</span>
+                        <button type="button" id="browse-button" class="browse-button" style="background-color: rgb(30, 30, 70)" onclick="triggerFileUpload()">Browse files</button>
                         <input type="file" class="form-control-file" id="resume" name="resume" required style="display:none;" onchange="updateFileLabel()">
-                        <span id="file-upload-status"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +74,7 @@
                     <label for="city">City (required)</label>
                     <input type="text" class="form-control" id="city" name="city" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="background-color: rgb(30, 30, 70);">Apply</button>
+                <button type="submit" class="btn btn-primary" style="background-color: rgb(30, 30, 70);" onclick="validateForm(event)">Apply</button>
             </form>
         </section>
     </div>
@@ -94,49 +105,70 @@
     <script>
         function updateFileLabel() {
             var input = document.getElementById('resume');
-            var status = document.getElementById('file-upload-status');
+            var label = document.getElementById('file-upload-label');
             var browseButton = document.getElementById('browse-button');
             if (input.files.length > 0) {
-                status.textContent = 'File uploaded: ' + input.files[0].name;
-                status.style.color = 'blue';
+                label.textContent = 'File uploaded successfully: ' + input.files[0].name;
+                label.style.color = 'blue';
                 browseButton.textContent = 'Reupload';
                 browseButton.classList.add('browse-button-reupload');
             } else {
-                status.textContent = '';
+                label.textContent = 'Drag and drop files here';
+                label.style.color = 'grey';
                 browseButton.textContent = 'Browse files';
                 browseButton.classList.remove('browse-button-reupload');
             }
         }
 
-        document.getElementById('job-application-form').addEventListener('submit', function(event) {
+        function triggerFileUpload() {
+            var input = document.getElementById('resume');
+            input.value = ""; // Clear the input value to allow re-upload of the same file
+            input.click();
+        }
+
+        function handleDragOver(event) {
             event.preventDefault();
+            document.getElementById('file-upload').classList.add('dragover');
+        }
 
-            const form = event.target;
-            const formData = new FormData(form);
+        function handleDragLeave(event) {
+            document.getElementById('file-upload').classList.remove('dragover');
+        }
 
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                return response.text().then(text => {
-                    console.log('Response text:', text);
-                    if (response.ok) {
-                        document.getElementById('submissionMessage').textContent = 'Thank you. Your form has been submitted. Please check your email Inbox/Spam folder for further processing with hiring.';
-                    } else {
-                        document.getElementById('submissionMessage').textContent = 'There was a problem with your submission. Please try again.';
-                    }
-                    $('#submissionModal').modal('show');
-                    form.reset(); // Reset form after submission
-                    updateFileLabel(); // Reset file upload status
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('submissionMessage').textContent = 'There was a problem with your submission. Please try again.';
-                $('#submissionModal').modal('show');
-            });
-        });
+        function handleFileDrop(event) {
+            event.preventDefault();
+            document.getElementById('file-upload').classList.remove('dragover');
+            var input = document.getElementById('resume');
+            var files = event.dataTransfer.files;
+            input.files = files; // Set the dropped files to the input element
+            updateFileLabel(); // Update the label
+        }
+
+        function validateForm(event) {
+            const form = document.getElementById('job-application-form');
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add('was-validated');
+            } else {
+                showModal(event);
+            }
+        }
+
+        function showModal(event) {
+            event.preventDefault();
+            const form = document.getElementById('job-application-form');
+            const email = form.elements['email'].value;
+            const message = `
+                Thank you for your submission and interest in joining our team at Home Easy!
+                Please check your email at ${email} for next steps.
+                You would have received an email with the subject line: “CSE Job Assessment” and a unique ID to complete our assessment.
+                Please check spam folder as well.
+                For more information on the hiring process and roles at Home Easy as well as our work environment please see: <a href="https://www.instagram.com/jobs.homeeasy/" target="_blank">jobs.homeeasy/instagram</a>
+            `;
+            document.getElementById('submissionMessage').innerHTML = message;
+            $('#submissionModal').modal('show');
+        }
     </script>
 </body>
 </html>
