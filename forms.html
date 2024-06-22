@@ -6,6 +6,17 @@
     <title>Job Listings - Home Easy</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styleF.css">
+    <style>
+        #file-upload-status {
+            font-weight: bold;
+            color: blue;
+            margin-top: 10px;
+        }
+        .browse-button-reupload {
+            background-color: rgb(30, 30, 70);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container form_border">
@@ -18,7 +29,7 @@
         </nav>
         <section class="application-form">
             <h2>Apply for the Role</h2>
-            <form action="https://emailcentral.herokuapp.com/hiring/jobssubmission" method="post" enctype="multipart/form-data">
+            <form id="job-application-form" action="https://emailcentral.herokuapp.com/hiring/jobssubmission" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="first-name">First Name (required)</label>
                     <input type="text" class="form-control" id="first-name" name="first-name" required>
@@ -39,8 +50,9 @@
                     <label for="resume">Resume/CV (required)</label>
                     <div class="file-upload" onclick="document.getElementById('resume').click();">
                         <span class="file-upload-label">Drag and drop files here</span>
-                        <button type="button" class="browse-button " style="background-color: rgb(30, 30, 70)" onclick="document.getElementById('resume').click();">Browse files</button>
-                        <input type="file" class="form-control-file" id="resume" name="resume" required style="display:none;">
+                        <button type="button" id="browse-button" class="browse-button" style="background-color: rgb(30, 30, 70)" onclick="document.getElementById('resume').click();">Browse files</button>
+                        <input type="file" class="form-control-file" id="resume" name="resume" required style="display:none;" onchange="updateFileLabel()">
+                        <span id="file-upload-status"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -55,8 +67,76 @@
             </form>
         </section>
     </div>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submissionModalLabel">Submission Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="submissionMessage">
+                    <!-- Message will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateFileLabel() {
+            var input = document.getElementById('resume');
+            var status = document.getElementById('file-upload-status');
+            var browseButton = document.getElementById('browse-button');
+            if (input.files.length > 0) {
+                status.textContent = 'File uploaded: ' + input.files[0].name;
+                status.style.color = 'blue';
+                browseButton.textContent = 'Reupload';
+                browseButton.classList.add('browse-button-reupload');
+            } else {
+                status.textContent = '';
+                browseButton.textContent = 'Browse files';
+                browseButton.classList.remove('browse-button-reupload');
+            }
+        }
+
+        document.getElementById('job-application-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                return response.text().then(text => {
+                    console.log('Response text:', text);
+                    if (response.ok) {
+                        document.getElementById('submissionMessage').textContent = 'Thank you. Your form has been submitted. Please check your email Inbox/Spam folder for further processing with hiring.';
+                    } else {
+                        document.getElementById('submissionMessage').textContent = 'There was a problem with your submission. Please try again.';
+                    }
+                    $('#submissionModal').modal('show');
+                    form.reset(); // Reset form after submission
+                    updateFileLabel(); // Reset file upload status
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('submissionMessage').textContent = 'There was a problem with your submission. Please try again.';
+                $('#submissionModal').modal('show');
+            });
+        });
+    </script>
 </body>
 </html>
