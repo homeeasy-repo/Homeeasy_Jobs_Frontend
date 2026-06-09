@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Lake Hiring Captain Console</title>
+    <style>
+        :root {
+            --ink: #111827;
+            --muted: #52606d;
+            --navy: #12355b;
+            --teal: #0f766e;
+            --gold: #c9a646;
+            --red: #9f1d35;
+            --green: #13795b;
+            --paper: #f6f8fb;
+            --white: #ffffff;
+            --line: #c9d4df;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.45;
+            letter-spacing: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px clamp(18px, 4vw, 48px);
+            background: #08192c;
+            color: var(--white);
+        }
+
+        .brand {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 14px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: clamp(24px, 5vw, 48px);
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 24px;
+            align-items: end;
+            max-width: 1280px;
+            margin: 0 auto 24px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.02;
+            letter-spacing: 0;
+        }
+
+        .lead {
+            margin: 0;
+            max-width: 820px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .refresh {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button {
+            min-height: 40px;
+            border: 1px solid var(--navy);
+            border-radius: 4px;
+            background: var(--navy);
+            color: var(--white);
+            font: inherit;
+            font-weight: 800;
+            padding: 9px 14px;
+            cursor: pointer;
+        }
+
+        .timestamp {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .status-strip,
+        .grid,
+        .wide-grid {
+            display: grid;
+            max-width: 1280px;
+            margin: 0 auto;
+            gap: 16px;
+        }
+
+        .status-strip {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-bottom: 16px;
+        }
+
+        .grid {
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            margin-bottom: 16px;
+        }
+
+        .wide-grid {
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        }
+
+        .panel,
+        .metric,
+        .row {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .panel {
+            padding: 18px;
+        }
+
+        .metric {
+            padding: 16px;
+            min-height: 116px;
+            border-top: 4px solid var(--teal);
+        }
+
+        .metric.warn {
+            border-top-color: var(--gold);
+        }
+
+        .metric.bad {
+            border-top-color: var(--red);
+        }
+
+        .metric strong {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .metric span {
+            display: block;
+            color: var(--navy);
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            color: var(--navy);
+            font-size: 22px;
+            letter-spacing: 0;
+        }
+
+        .rows {
+            display: grid;
+            gap: 10px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: minmax(82px, 0.22fr) minmax(0, 0.78fr);
+            gap: 12px;
+            padding: 12px;
+            align-items: start;
+        }
+
+        .row .label {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .row .value {
+            min-width: 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--navy);
+            background: #e9f2f6;
+            border: 1px solid #c7dce7;
+        }
+
+        .badge.good {
+            color: var(--green);
+            background: #edf8f3;
+            border-color: #b8dcca;
+        }
+
+        .badge.warn {
+            color: #775b09;
+            background: #fff8df;
+            border-color: #e7d48b;
+        }
+
+        .badge.bad {
+            color: var(--red);
+            background: #fff2f4;
+            border-color: #e4a6b1;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .empty {
+            color: var(--muted);
+            padding: 16px 0;
+        }
+
+        .error {
+            color: var(--red);
+            font-weight: 800;
+        }
+
+        @media (max-width: 920px) {
+            .header,
+            .grid,
+            .wide-grid,
+            .status-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .refresh {
+                justify-content: flex-start;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">Blue Lake Hiring Captain</div>
+        <nav class="nav" aria-label="Hiring links">
+            <a href="blue-lake-revenue-operator.html">Candidate Funnel</a>
+            <a href="blue-lake-data-room.html">Packet I</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="header">
+            <div>
+                <h1>Hiring Captain Console</h1>
+                <p class="lead">Live operating state for intake, screening queue, university outreach, and the actions still blocked behind shadow mode.</p>
+            </div>
+            <div class="refresh">
+                <span class="timestamp" id="last-refresh">Not loaded yet</span>
+                <button type="button" id="refresh-button">Refresh</button>
+            </div>
+        </section>
+
+        <section class="status-strip">
+            <div class="metric" id="metric-api"><strong>Intake API</strong><span>...</span></div>
+            <div class="metric" id="metric-active"><strong>Active Web Applicants</strong><span>...</span></div>
+            <div class="metric warn" id="metric-worker"><strong>Worker Mode</strong><span>...</span></div>
+            <div class="metric bad" id="metric-indeed"><strong>Indeed Actions</strong><span>...</span></div>
+        </section>
+
+        <section class="grid">
+            <div class="panel">
+                <h2>Captain State</h2>
+                <div class="rows" id="captain-state"></div>
+            </div>
+            <div class="panel">
+                <h2>Latest Web Applications</h2>
+                <div id="recent-applications"></div>
+            </div>
+        </section>
+
+        <section class="wide-grid">
+            <div class="panel">
+                <h2>Queue Preview</h2>
+                <div id="queue-preview"></div>
+            </div>
+            <div class="panel">
+                <h2>Outreach</h2>
+                <div class="rows" id="outreach-state"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const STATUS_ENDPOINT = "https://bluelake-hiring-intake-w74pxoam6q-uc.a.run.app/api/hiring/status";
+        const REFRESH_MS = 30000;
+
+        const state = {
+            loading: false
+        };
+
+        function badge(text, kind = "") {
+            return `<span class="badge ${kind}">${text}</span>`;
+        }
+
+        function setMetric(id, value, kind = "") {
+            const el = document.querySelector(`#${id} span`);
+            const box = document.getElementById(id);
+            el.textContent = value;
+            box.classList.remove("warn", "bad");
+            if (kind) box.classList.add(kind);
+        }
+
+        function row(label, value) {
+            return `<div class="row"><div class="label">${label}</div><div class="value">${value}</div></div>`;
+        }
+
+        function table(items, columns) {
+            if (!items || !items.length) {
+                return `<div class="empty">No records in this lane right now.</div>`;
+            }
+            const head = columns.map((col) => `<th>${col.label}</th>`).join("");
+            const body = items.map((item) => {
+                const cells = columns.map((col) => `<td>${col.render(item)}</td>`).join("");
+                return `<tr>${cells}</tr>`;
+            }).join("");
+            return `<table class="table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+        }
+
+        function render(data) {
+            setMetric("metric-api", data.ok ? "LIVE" : "DOWN", data.ok ? "" : "bad");
+            setMetric("metric-active", String(data.intake.web_active || 0));
+            setMetric("metric-worker", data.worker.mode || "UNKNOWN", data.worker.mode === "SHADOW" ? "warn" : "");
+            setMetric("metric-indeed", data.limits.indeed_ads_live ? "LIVE" : "OFF", data.limits.indeed_ads_live ? "" : "bad");
+
+            const worker = data.worker || {};
+            document.getElementById("captain-state").innerHTML = [
+                row("Service", `${badge(data.service.name, "good")} revision ${data.service.revision}`),
+                row("Intake", `${data.intake.web_total} total web records, ${data.intake.web_retired} retired verification records`),
+                row("Worker", `${badge(worker.mode, "warn")} cadence ${worker.cadence_seconds}s, renders databoxes: ${worker.renders_databoxes ? "yes" : "no"}`),
+                row("Databoxes", `${worker.databox_storage}`),
+                row("Sends", `candidate email ${badge(worker.sends_candidate_email ? "on" : "off", worker.sends_candidate_email ? "good" : "bad")} office email ${badge(worker.sends_career_office_email ? "on" : "off", worker.sends_career_office_email ? "good" : "bad")} Indeed ${badge(worker.takes_indeed_actions ? "on" : "off", worker.takes_indeed_actions ? "good" : "bad")}`),
+                row("Last Verification", `${worker.last_verified?.checked_utc || "unknown"}; row ${worker.last_verified?.verification_candidate_row || "n/a"} ${worker.last_verified?.verification_state || ""}`)
+            ].join("");
+
+            const appColumns = [
+                {label: "Row", render: (item) => `#${item.row_id}`},
+                {label: "School", render: (item) => `${item.school || "unknown"}<br><span class="timestamp">${item.program || ""}</span>`},
+                {label: "Source", render: (item) => item.source || "unknown"},
+                {label: "Status", render: (item) => badge(item.status, item.status === "awaiting_captain" ? "good" : "warn")},
+                {label: "Submitted", render: (item) => item.submitted_at || ""}
+            ];
+            document.getElementById("recent-applications").innerHTML = table(data.recent_web_applications, appColumns);
+
+            const queueColumns = [
+                {label: "Row", render: (item) => `#${item.row_id}`},
+                {label: "Application", render: (item) => item.application_id || ""},
+                {label: "Job", render: (item) => item.job_title || ""},
+                {label: "Status", render: (item) => badge(item.status, item.status === "awaiting_captain" ? "good" : "warn")},
+                {label: "Packet", render: (item) => item.has_packet ? badge("yes", "good") : badge("no", "warn")}
+            ];
+            document.getElementById("queue-preview").innerHTML = table(data.captain_queue_preview, queueColumns);
+
+            const outreach = data.outreach || {};
+            const bounceRows = (outreach.immediate_bounces || []).map((item) => (
+                `<div>${badge(item.type, item.type.includes("bounce") ? "warn" : "")} <strong>${item.school}</strong><br><span class="timestamp">${item.detail}</span></div>`
+            )).join("");
+            document.getElementById("outreach-state").innerHTML = [
+                row("Mailbox", outreach.source || "unknown"),
+                row("Latest Wave", `${outreach.latest_wave || ""}<br><span class="timestamp">${outreach.last_sent_utc || ""}</span>`),
+                row("Routes", `${outreach.routes_sent || 0} sent / ${outreach.routes_targeted || 0} targeted`),
+                row("Held", (outreach.held_for_confirmation || []).join(", ") || "none"),
+                row("Bounces", bounceRows || "none observed")
+            ].join("");
+
+            document.getElementById("last-refresh").textContent = `Updated ${new Date().toLocaleString()} from ${data.generated_at}`;
+        }
+
+        async function refresh() {
+            if (state.loading) return;
+            state.loading = true;
+            try {
+                const response = await fetch(`${STATUS_ENDPOINT}?t=${Date.now()}`, {cache: "no-store"});
+                const data = await response.json();
+                if (!response.ok || !data.ok) throw new Error(data.error || "status unavailable");
+                render(data);
+            } catch (error) {
+                setMetric("metric-api", "DOWN", "bad");
+                document.getElementById("last-refresh").innerHTML = `<span class="error">${error.message}</span>`;
+            } finally {
+                state.loading = false;
+            }
+        }
+
+        document.getElementById("refresh-button").addEventListener("click", refresh);
+        refresh();
+        window.setInterval(refresh, REFRESH_MS);
+    </script>
+</body>
+</html>
