@@ -8,16 +8,25 @@
     <style>
         :root {
             --ink: #111827;
+            --muted: #52606d;
             --navy: #12355b;
-            --lake: #0f766e;
-            --line: #c9a646;
-            --paper: #f8fafc;
+            --teal: #0f766e;
+            --gold: #c9a646;
+            --brick: #8f3d2f;
+            --paper: #f6f8fb;
             --soft: #e6eef5;
             --white: #ffffff;
+            --line: #c9d4df;
+            --good: #13795b;
+            --bad: #9f1d35;
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -41,17 +50,15 @@
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            padding: 16px clamp(18px, 4vw, 56px);
+            padding: 14px clamp(18px, 4vw, 56px);
             color: var(--white);
-            background: rgba(10, 27, 48, 0.72);
+            background: rgba(8, 25, 44, 0.82);
             backdrop-filter: blur(10px);
         }
 
         .brand {
             font-weight: 800;
             font-size: 18px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
         }
 
         .nav {
@@ -63,11 +70,11 @@
 
         .nav a {
             text-decoration: none;
-            opacity: 0.92;
+            opacity: 0.94;
         }
 
         .apply-chip {
-            border: 1px solid rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.72);
             padding: 8px 12px;
             border-radius: 4px;
         }
@@ -76,66 +83,107 @@
             min-height: 88vh;
             display: grid;
             align-items: end;
-            padding: 110px clamp(18px, 6vw, 84px) 44px;
+            padding: 110px clamp(18px, 6vw, 84px) 42px;
             color: var(--white);
             background:
-                linear-gradient(90deg, rgba(7, 22, 39, 0.9), rgba(10, 42, 62, 0.66), rgba(7, 22, 39, 0.2)),
+                linear-gradient(90deg, rgba(7, 22, 39, 0.92), rgba(10, 42, 62, 0.68), rgba(7, 22, 39, 0.18)),
                 url("blue-lake-chicago-skyline.jpg") center / cover;
         }
 
         .hero-inner {
-            width: min(980px, 100%);
+            width: min(1040px, 100%);
         }
 
         .kicker {
             font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
             color: #9be7df;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
+            letter-spacing: 0;
         }
 
         h1 {
-            font-size: clamp(42px, 6vw, 74px);
+            font-size: clamp(42px, 6vw, 76px);
             line-height: 1.02;
             margin: 0 0 22px;
-            max-width: 920px;
+            max-width: 940px;
+            letter-spacing: 0;
         }
 
         .hero-copy {
-            max-width: 720px;
-            font-size: clamp(18px, 2.1vw, 24px);
+            max-width: 760px;
+            font-size: clamp(18px, 2vw, 23px);
             color: #e7f2f7;
-            margin: 0 0 32px;
+            margin: 0 0 28px;
         }
 
-        .actions {
+        .actions,
+        .inline-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
         }
 
-        .button {
+        .button,
+        button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 46px;
-            padding: 12px 18px;
+            min-height: 44px;
+            padding: 11px 16px;
             border-radius: 4px;
             font-weight: 800;
             text-decoration: none;
             border: 1px solid transparent;
+            cursor: pointer;
+            font: inherit;
         }
 
-        .button.primary {
+        .button.primary,
+        button.primary {
             background: var(--white);
             color: var(--navy);
+        }
+
+        .button.dark,
+        button.dark {
+            background: var(--navy);
+            color: var(--white);
         }
 
         .button.secondary {
             color: var(--white);
             border-color: rgba(255,255,255,0.72);
+        }
+
+        .button.outline,
+        button.outline {
+            color: var(--navy);
+            border-color: var(--navy);
+            background: transparent;
+        }
+
+        .pipeline-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1px;
+            background: rgba(255,255,255,0.24);
+            max-width: 980px;
+            margin-top: 34px;
+            border: 1px solid rgba(255,255,255,0.24);
+        }
+
+        .pipeline-strip div {
+            min-height: 96px;
+            padding: 14px;
+            background: rgba(7, 22, 39, 0.6);
+        }
+
+        .pipeline-strip strong {
+            display: block;
+            color: #9be7df;
+            margin-bottom: 4px;
         }
 
         .band {
@@ -152,7 +200,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
             gap: clamp(28px, 5vw, 70px);
             align-items: start;
             max-width: 1180px;
@@ -162,103 +210,207 @@
         .section-title {
             margin: 0 0 18px;
             color: var(--navy);
-            font-size: clamp(28px, 3.2vw, 44px);
+            font-size: clamp(28px, 3.1vw, 44px);
             line-height: 1.08;
+            letter-spacing: 0;
         }
 
         .lead {
             font-size: 19px;
-            max-width: 680px;
+            max-width: 720px;
+            color: #263341;
         }
 
-        .rules {
-            display: grid;
-            gap: 14px;
-            margin-top: 26px;
-        }
-
-        .rule {
-            display: grid;
-            grid-template-columns: 42px minmax(0, 1fr);
-            gap: 14px;
-            align-items: start;
-        }
-
-        .num {
-            width: 34px;
-            height: 34px;
-            display: grid;
-            place-items: center;
-            background: var(--navy);
-            color: var(--white);
-            border-radius: 50%;
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .rule h3,
-        .operator-list h3 {
-            margin: 0 0 4px;
-            font-size: 18px;
-            color: var(--ink);
-        }
-
-        .rule p {
-            margin: 0;
+        .muted {
+            color: var(--muted);
         }
 
         .operator-list {
             display: grid;
-            gap: 18px;
+            gap: 16px;
+        }
+
+        .operator-list article,
+        .evidence-cell,
+        .challenge-panel {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 18px;
         }
 
         .operator-list article {
-            border-left: 4px solid var(--line);
-            padding-left: 16px;
+            border-left: 5px solid var(--gold);
         }
 
-        .operator-list p {
+        .operator-list h3,
+        .challenge-panel h3,
+        .evidence-cell h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .operator-list p,
+        .challenge-panel p,
+        .evidence-cell p {
             margin: 0;
         }
 
-        .proof {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 18px;
+        }
+
+        .tab {
+            border: 1px solid var(--line);
+            background: var(--white);
+            color: var(--navy);
+            min-height: 38px;
+            padding: 8px 12px;
+        }
+
+        .tab.active {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .packet {
+            display: none;
             max-width: 1180px;
             margin: 0 auto;
         }
 
-        .proof div {
-            padding-top: 16px;
-            border-top: 2px solid var(--line);
-        }
-
-        .proof strong {
+        .packet.active {
             display: block;
-            font-size: 20px;
+        }
+
+        .packet-grid,
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .packet-step {
+            border-top: 3px solid var(--gold);
+            padding: 16px 0 0;
+        }
+
+        .packet-step strong {
+            display: block;
             color: var(--navy);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-size: 18px;
         }
 
-        .application {
-            max-width: 980px;
-            margin: 0 auto;
+        .challenge-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 16px;
+            margin-top: 24px;
         }
 
-        .application h2 {
-            margin-top: 0;
+        .challenge-panel {
+            background: #fbfcfe;
         }
 
-        .application-steps {
-            columns: 2;
-            column-gap: 42px;
+        .rubric {
+            margin: 16px 0 0;
             padding-left: 20px;
         }
 
-        .application-steps li {
-            break-inside: avoid;
-            margin-bottom: 10px;
+        .rubric li {
+            margin-bottom: 8px;
+        }
+
+        .form-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            gap: clamp(26px, 5vw, 64px);
+            align-items: start;
+        }
+
+        form {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        label {
+            display: grid;
+            gap: 6px;
+            font-weight: 700;
+            color: #253142;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid #b9c6d3;
+            border-radius: 4px;
+            padding: 11px 12px;
+            font: inherit;
+            color: var(--ink);
+            background: #ffffff;
+        }
+
+        textarea {
+            min-height: 122px;
+            resize: vertical;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .checkline {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-weight: 600;
+            margin: 14px 0;
+        }
+
+        .checkline input {
+            width: auto;
+            margin-top: 5px;
+        }
+
+        .hidden-field {
+            display: none;
+        }
+
+        .status {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--line);
+            background: #f9fafb;
+        }
+
+        .status.good {
+            border-color: #9ccdbb;
+            color: var(--good);
+            background: #f1fbf7;
+        }
+
+        .status.bad {
+            border-color: #dfa2ae;
+            color: var(--bad);
+            background: #fff5f6;
         }
 
         .footer {
@@ -268,7 +420,7 @@
             font-size: 13px;
         }
 
-        @media (max-width: 760px) {
+        @media (max-width: 900px) {
             .topbar {
                 position: absolute;
                 align-items: flex-start;
@@ -284,15 +436,20 @@
             }
 
             .grid,
-            .proof {
+            .form-shell,
+            .challenge-layout,
+            .pipeline-strip,
+            .packet-grid,
+            .evidence-grid {
                 grid-template-columns: 1fr;
             }
 
-            .application-steps {
-                columns: 1;
+            .fields {
+                grid-template-columns: 1fr;
             }
 
-            .button {
+            .button,
+            button {
                 width: 100%;
             }
         }
@@ -303,7 +460,8 @@
         <div class="brand">Blue Lake</div>
         <nav class="nav" aria-label="Primary">
             <a href="#role">Role</a>
-            <a href="#selection">Selection</a>
+            <a href="#dataroom">Data Room</a>
+            <a href="#technical">Technical Screen</a>
             <a href="#apply" class="apply-chip">Apply</a>
         </nav>
     </header>
@@ -315,8 +473,14 @@
                 <h1>Own revenue. Build the systems that scale it.</h1>
                 <p class="hero-copy">A selective remote program for early-career technical operators who can reason from code, communicate clearly, and take commercial ownership across real US real-estate workflows.</p>
                 <div class="actions">
-                    <a class="button primary" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application&body=Name%3A%0ASchool%20%2F%20Program%3A%0ACity%20%2F%20Country%3A%0ALinkedIn%20or%20GitHub%3A%0A%0A1.%20What%20have%20you%20built%20that%20actually%20worked%3F%0A%0A2.%20Based%20on%20this%20page%2C%20where%20does%20Blue%20Lake%20make%20money%3F%0A%0A3.%20What%20would%20you%20build%20or%20fix%20first%3F%0A%0A4.%20What%20hours%20can%20you%20overlap%20with%20US%20Central%20Time%3F%0A%0AAttach%20your%20resume%20before%20sending.">Apply by Email</a>
-                    <a class="button secondary" href="#selection">See the Selection Process</a>
+                    <a class="button primary" href="#apply">Start Structured Application</a>
+                    <a class="button secondary" href="#dataroom">Open Packet I</a>
+                </div>
+                <div class="pipeline-strip" aria-label="Hiring pipeline">
+                    <div><strong>Packet I</strong>Study the business and submit a point of view.</div>
+                    <div><strong>Candidate Record</strong>Qualified submissions enter the Hiring Captain pipeline.</div>
+                    <div><strong>Technical Screen</strong>Code, systems, debugging, and no-AI fundamentals.</div>
+                    <div><strong>Paid Trial</strong>Finalists work a bounded live problem under agreement.</div>
                 </div>
             </div>
         </section>
@@ -324,107 +488,162 @@
         <section class="band white" id="role">
             <div class="grid">
                 <div>
-                    <h2 class="section-title">Not a normal sales role. Not a normal software role.</h2>
+                    <h2 class="section-title">Commercial founder track. Technical ability is the floor.</h2>
                     <p class="lead">Blue Lake is the B2B revenue layer in a US real-estate operating system. HomeEasy is the B2C demand channel. The role sits between software, customer communication, data, and revenue operations.</p>
-                    <p>Technical skill is the entry ticket. The job is ownership: finding bottlenecks, building tools, working real counterparties, understanding the unit economics, and moving revenue through the system.</p>
+                    <p class="muted">The title is not a software engineer title because the job is larger than coding. The technical bar is high because the operator must own agentic workflows, debug production behavior, and reason from systems without waiting for a narrow task list.</p>
                 </div>
                 <div class="operator-list">
                     <article>
-                        <h3>Technical floor</h3>
-                        <p>You can code, debug, reason about systems, and use AI tools without surrendering judgment to them.</p>
+                        <h3>Build and debug systems</h3>
+                        <p>Reason about codebases, state, queues, idempotency, data quality, observability, and failure modes.</p>
                     </article>
                     <article>
-                        <h3>Commercial ownership</h3>
-                        <p>You understand where the money is made and act on the missing step, not only the assigned task.</p>
+                        <h3>Move revenue</h3>
+                        <p>Understand where the money is made, find leakage, and move the next commercial step yourself.</p>
                     </article>
                     <article>
-                        <h3>Communication</h3>
-                        <p>You can write clearly and, for phone-facing seats, speak with enough fluency to work US customers and partners.</p>
+                        <h3>Communicate externally</h3>
+                        <p>Write and speak clearly with renters, buildings, counterparties, and internal operators.</p>
                     </article>
                     <article>
-                        <h3>Remote operating rhythm</h3>
-                        <p>You can overlap with US Central Time and carry work without waiting for a narrow task list.</p>
+                        <h3>Use AI with judgment</h3>
+                        <p>Use AI to accelerate authorized building work. Do not use it to fake understanding.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="band soft">
-            <div class="proof">
-                <div>
-                    <strong>B2B</strong>
-                    Owner, building, commission, and revenue workflows.
-                </div>
-                <div>
-                    <strong>B2C</strong>
-                    HomeEasy renter demand, qualification, follow-up, and matching.
-                </div>
-                <div>
-                    <strong>AI</strong>
-                    Agents and tools tied to commercial outcomes, not demos.
-                </div>
-            </div>
-        </section>
-
-        <section class="band white" id="selection">
+        <section class="band soft" id="dataroom">
             <div class="grid">
                 <div>
-                    <h2 class="section-title">The process is built to find people who actually think.</h2>
-                    <p class="lead">AI may be used for building when authorized. It may not be used to fake understanding, summarize material instead of studying it, or manufacture a point of view.</p>
+                    <h2 class="section-title">Packet I: Data Room</h2>
+                    <p class="lead">Your first screen is whether you can learn a business from incomplete materials and form a point of view. Do not send a generic summary.</p>
+                    <div class="inline-actions">
+                        <a class="button dark" href="blue-lake-data-room.html">Open Full Data Room</a>
+                        <a class="button outline" href="#apply">Submit Packet I Response</a>
+                    </div>
                 </div>
-                <div class="rules">
-                    <div class="rule">
-                        <div class="num">1</div>
-                        <div>
-                            <h3>Application</h3>
-                            <p>Send your resume plus direct answers to the application questions.</p>
+                <div>
+                    <div class="tabs" role="tablist" aria-label="Packet I sections">
+                        <button class="tab active" type="button" data-tab="model">Model</button>
+                        <button class="tab" type="button" data-tab="revenue">Revenue</button>
+                        <button class="tab" type="button" data-tab="systems">Systems</button>
+                        <button class="tab" type="button" data-tab="judgment">Judgment</button>
+                    </div>
+                    <div class="packet active" id="packet-model">
+                        <div class="packet-grid">
+                            <div class="packet-step"><strong>Blue Lake</strong>B2B owner, building, commission, and operating workflows.</div>
+                            <div class="packet-step"><strong>HomeEasy</strong>B2C renter demand, qualification, follow-up, and matching.</div>
+                            <div class="packet-step"><strong>Operator</strong>One owner who sees software, data, communication, and economics together.</div>
                         </div>
                     </div>
-                    <div class="rule">
-                        <div class="num">2</div>
-                        <div>
-                            <h3>Data-room screen</h3>
-                            <p>Study the business and explain where revenue is made and what you would change.</p>
+                    <div class="packet" id="packet-revenue">
+                        <div class="packet-grid">
+                            <div class="packet-step"><strong>Demand</strong>Renter intent is captured, qualified, and matched to supply.</div>
+                            <div class="packet-step"><strong>Conversion</strong>Leases, tours, applications, follow-up, and counterparties move the funnel.</div>
+                            <div class="packet-step"><strong>Collection</strong>Commission must be verified, invoiced, followed up, and collected.</div>
                         </div>
                     </div>
-                    <div class="rule">
-                        <div class="num">3</div>
-                        <div>
-                            <h3>Technical build</h3>
-                            <p>Build or analyze something useful from incomplete context and explain the commercial logic.</p>
+                    <div class="packet" id="packet-systems">
+                        <div class="packet-grid">
+                            <div class="packet-step"><strong>Agents</strong>Automate the routine work while preserving judgment at the important edges.</div>
+                            <div class="packet-step"><strong>Memory</strong>Carry school, candidate, lead, building, and transaction context forward.</div>
+                            <div class="packet-step"><strong>Observability</strong>Make the next action and the missing evidence visible.</div>
                         </div>
                     </div>
-                    <div class="rule">
-                        <div class="num">4</div>
-                        <div>
-                            <h3>Live communication gate</h3>
-                            <p>Shortlisted candidates complete a written and verbal judgment assessment.</p>
+                    <div class="packet" id="packet-judgment">
+                        <div class="packet-grid">
+                            <div class="packet-step"><strong>Point of view</strong>Say what you believe and what evidence would change your mind.</div>
+                            <div class="packet-step"><strong>Ownership</strong>Find the missing step without being assigned every move.</div>
+                            <div class="packet-step"><strong>Integrity</strong>AI-assisted building is allowed only where authorized.</div>
                         </div>
                     </div>
-                    <div class="rule">
-                        <div class="num">5</div>
-                        <div>
-                            <h3>Paid trial</h3>
-                            <p>Real production work begins only after the paid trial stage and required agreements.</p>
-                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="band white" id="technical">
+            <div class="grid">
+                <div>
+                    <h2 class="section-title">The technical bar is real.</h2>
+                    <p class="lead">Everyone who advances can code. The assessment looks for architectural judgment, debugging discipline, and whether you understand what your code is doing when AI helped produce it.</p>
+                </div>
+                <div class="evidence-grid">
+                    <div class="evidence-cell">
+                        <h3>Codebase takeover</h3>
+                        <p>Read an unfamiliar service, identify state boundaries, patch a bug, and explain the risk.</p>
                     </div>
+                    <div class="evidence-cell">
+                        <h3>Algorithmic core</h3>
+                        <p>Implement a scheduling or matching primitive with complexity analysis and tests.</p>
+                    </div>
+                    <div class="evidence-cell">
+                        <h3>Production debugging</h3>
+                        <p>Diagnose a failure from logs, schema, and event traces before proposing a fix.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-layout">
+                <div class="challenge-panel">
+                    <h3>Preview: Signal Engine Challenge</h3>
+                    <p>You receive messy lead, building, and commission snippets. Build a small service or notebook that ranks next actions, explains the evidence, and flags missing data.</p>
+                    <ul class="rubric">
+                        <li>Correct data modeling and edge-case handling.</li>
+                        <li>Clear trade-offs, tests, and failure-mode awareness.</li>
+                        <li>Commercial logic: why this action makes money or prevents leakage.</li>
+                    </ul>
+                </div>
+                <div class="challenge-panel">
+                    <h3>No-AI fundamentals gate</h3>
+                    <p>Shortlisted candidates complete a live oral screen without AI: data structures, concurrency, databases, debugging, and system design. You must be able to reason under your own power.</p>
+                    <ul class="rubric">
+                        <li>Explain complexity without memorized theater.</li>
+                        <li>Debug from first principles.</li>
+                        <li>Defend architecture under changing requirements.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="band soft" id="apply">
-            <div class="application">
-                <h2 class="section-title">Apply</h2>
-                <p>Send one email to <strong>hr@homeeasy.com</strong> with the subject <strong>BlueLake Revenue Operator Application</strong>. Attach your resume and include:</p>
-                <ol class="application-steps">
-                    <li>Name, school, program, city, country.</li>
-                    <li>LinkedIn, GitHub, portfolio, or one working artifact.</li>
-                    <li>What you have built that actually worked.</li>
-                    <li>Where you think Blue Lake makes money.</li>
-                    <li>What you would build or fix first after reading this page.</li>
-                    <li>Your possible US Central Time overlap.</li>
-                </ol>
-                <p><a class="button primary" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application&body=Name%3A%0ASchool%20%2F%20Program%3A%0ACity%20%2F%20Country%3A%0ALinkedIn%20or%20GitHub%3A%0A%0A1.%20What%20have%20you%20built%20that%20actually%20worked%3F%0A%0A2.%20Based%20on%20this%20page%2C%20where%20does%20Blue%20Lake%20make%20money%3F%0A%0A3.%20What%20would%20you%20build%20or%20fix%20first%3F%0A%0A4.%20What%20hours%20can%20you%20overlap%20with%20US%20Central%20Time%3F%0A%0AAttach%20your%20resume%20before%20sending.">Start Application Email</a></p>
+            <div class="form-shell">
+                <div>
+                    <h2 class="section-title">Submit Packet I</h2>
+                    <p class="lead">A strong application is specific. It shows what you built, how you think, where the revenue is, and what you would do first.</p>
+                    <p class="muted">The form creates a candidate record for the Hiring Captain. If the endpoint is unavailable, email <strong>hr@homeeasy.com</strong> with the subject <strong>BlueLake Revenue Operator Application</strong>.</p>
+                    <div class="inline-actions">
+                        <a class="button outline" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application">Email Fallback</a>
+                    </div>
+                </div>
+                <form id="application-form">
+                    <div class="fields">
+                        <label>Full name<input name="full_name" autocomplete="name" required></label>
+                        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+                        <label>Phone / WhatsApp<input name="phone" autocomplete="tel"></label>
+                        <label>City<input name="city" autocomplete="address-level2"></label>
+                        <label>Country<input name="country" autocomplete="country-name" required></label>
+                        <label>School<input name="school" required></label>
+                        <label>Program<input name="program"></label>
+                        <label>LinkedIn<input name="linkedin" type="url" placeholder="https://"></label>
+                        <label>GitHub<input name="github" type="url" placeholder="https://"></label>
+                        <label class="full">Best artifact or resume link<input name="artifact_url" type="url" placeholder="https://"></label>
+                        <label class="hidden-field">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+                        <label class="full">What have you built that actually worked?<textarea name="technical_evidence" required minlength="80"></textarea></label>
+                        <label class="full">What is Blue Lake / HomeEasy, in your own words?<textarea name="dataroom_summary" required minlength="80"></textarea></label>
+                        <label class="full">Where does the business make money?<textarea name="revenue_thesis" required minlength="80"></textarea></label>
+                        <label class="full">What would you build or fix first?<textarea name="first_fix" required minlength="80"></textarea></label>
+                        <label class="full">Sketch the system you would build for a continuous hiring or revenue captain.<textarea name="system_design"></textarea></label>
+                        <label>US Central overlap<input name="ct_overlap" placeholder="Example: 8am-1pm CT"></label>
+                        <label>Compensation bid<input name="compensation_bid" placeholder="Trial/base expectation"></label>
+                    </div>
+                    <label class="checkline">
+                        <input name="ai_policy_ack" type="checkbox" required>
+                        <span>I understand that AI may be used for authorized building work, not to fake understanding or correspondence.</span>
+                    </label>
+                    <button class="dark" type="submit">Submit Application</button>
+                    <div id="form-status" class="status" aria-live="polite">Ready for Packet I submission.</div>
+                </form>
             </div>
         </section>
     </main>
@@ -432,5 +651,57 @@
     <footer class="footer">
         Blue Lake operates through affiliated US real-estate and insurance brands. US immersion, if offered, is for training and market understanding. Licensed in-person US real-estate activity is handled by authorized US personnel.
     </footer>
+
+    <script>
+        const INTAKE_ENDPOINT = "https://bluelake-hiring-intake-w74pxoam6q-uc.a.run.app/api/hiring/apply";
+
+        document.querySelectorAll(".tab").forEach((tab) => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+                document.querySelectorAll(".packet").forEach((item) => item.classList.remove("active"));
+                tab.classList.add("active");
+                document.getElementById(`packet-${tab.dataset.tab}`).classList.add("active");
+            });
+        });
+
+        function collectUtm() {
+            const params = new URLSearchParams(window.location.search);
+            const utm = {};
+            ["utm_source", "utm_medium", "utm_campaign", "school"].forEach((key) => {
+                if (params.get(key)) utm[key] = params.get(key);
+            });
+            return utm;
+        }
+
+        const form = document.getElementById("application-form");
+        const statusBox = document.getElementById("form-status");
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            statusBox.className = "status";
+            statusBox.textContent = "Submitting...";
+            const data = Object.fromEntries(new FormData(form).entries());
+            data.ai_policy_ack = Boolean(data.ai_policy_ack);
+            data.source = "github-pages-blue-lake";
+            data.utm = collectUtm();
+
+            try {
+                const response = await fetch(INTAKE_ENDPOINT, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (!response.ok || !result.ok) {
+                    throw new Error((result.errors || [result.error || "Submission failed."]).join(" "));
+                }
+                statusBox.className = "status good";
+                statusBox.textContent = `Application received. Reference ${result.application_id}.`;
+                form.reset();
+            } catch (error) {
+                statusBox.className = "status bad";
+                statusBox.textContent = `${error.message} Email hr@homeeasy.com with subject BlueLake Revenue Operator Application if this persists.`;
+            }
+        });
+    </script>
 </body>
 </html>
