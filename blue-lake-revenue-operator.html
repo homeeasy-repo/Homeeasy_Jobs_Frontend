@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Lake Revenue Operator Program</title>
+    <meta name="description" content="A selective remote program for technical operators who can own revenue, systems, communication, and outcomes.">
+    <style>
+        :root {
+            --ink: #111827;
+            --navy: #12355b;
+            --lake: #0f766e;
+            --line: #c9a646;
+            --paper: #f8fafc;
+            --soft: #e6eef5;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.55;
+            letter-spacing: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .topbar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px clamp(18px, 4vw, 56px);
+            color: var(--white);
+            background: rgba(10, 27, 48, 0.72);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            opacity: 0.92;
+        }
+
+        .apply-chip {
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .hero {
+            min-height: 88vh;
+            display: grid;
+            align-items: end;
+            padding: 110px clamp(18px, 6vw, 84px) 44px;
+            color: var(--white);
+            background:
+                linear-gradient(90deg, rgba(7, 22, 39, 0.9), rgba(10, 42, 62, 0.66), rgba(7, 22, 39, 0.2)),
+                url("blue-lake-chicago-skyline.jpg") center / cover;
+        }
+
+        .hero-inner {
+            width: min(980px, 100%);
+        }
+
+        .kicker {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #9be7df;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 74px);
+            line-height: 1.02;
+            margin: 0 0 22px;
+            max-width: 920px;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+            font-size: clamp(18px, 2.1vw, 24px);
+            color: #e7f2f7;
+            margin: 0 0 32px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .button.primary {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .button.secondary {
+            color: var(--white);
+            border-color: rgba(255,255,255,0.72);
+        }
+
+        .band {
+            padding: clamp(42px, 7vw, 84px) clamp(18px, 6vw, 84px);
+        }
+
+        .band.white {
+            background: var(--white);
+        }
+
+        .band.soft {
+            background: var(--soft);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(28px, 5vw, 70px);
+            align-items: start;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin: 0 0 18px;
+            color: var(--navy);
+            font-size: clamp(28px, 3.2vw, 44px);
+            line-height: 1.08;
+        }
+
+        .lead {
+            font-size: 19px;
+            max-width: 680px;
+        }
+
+        .rules {
+            display: grid;
+            gap: 14px;
+            margin-top: 26px;
+        }
+
+        .rule {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+        }
+
+        .num {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .rule h3,
+        .operator-list h3 {
+            margin: 0 0 4px;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .rule p {
+            margin: 0;
+        }
+
+        .operator-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .operator-list article {
+            border-left: 4px solid var(--line);
+            padding-left: 16px;
+        }
+
+        .operator-list p {
+            margin: 0;
+        }
+
+        .proof {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .proof div {
+            padding-top: 16px;
+            border-top: 2px solid var(--line);
+        }
+
+        .proof strong {
+            display: block;
+            font-size: 20px;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .application {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .application h2 {
+            margin-top: 0;
+        }
+
+        .application-steps {
+            columns: 2;
+            column-gap: 42px;
+            padding-left: 20px;
+        }
+
+        .application-steps li {
+            break-inside: avoid;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            padding: 26px clamp(18px, 6vw, 84px);
+            background: #08192c;
+            color: #d7e5ed;
+            font-size: 13px;
+        }
+
+        @media (max-width: 760px) {
+            .topbar {
+                position: absolute;
+                align-items: flex-start;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 86vh;
+                padding-top: 88px;
+            }
+
+            .grid,
+            .proof {
+                grid-template-columns: 1fr;
+            }
+
+            .application-steps {
+                columns: 1;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">Blue Lake</div>
+        <nav class="nav" aria-label="Primary">
+            <a href="#role">Role</a>
+            <a href="#selection">Selection</a>
+            <a href="#apply" class="apply-chip">Apply</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="kicker">Revenue Operator Program</div>
+                <h1>Own revenue. Build the systems that scale it.</h1>
+                <p class="hero-copy">A selective remote program for early-career technical operators who can reason from code, communicate clearly, and take commercial ownership across real US real-estate workflows.</p>
+                <div class="actions">
+                    <a class="button primary" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application&body=Name%3A%0ASchool%20%2F%20Program%3A%0ACity%20%2F%20Country%3A%0ALinkedIn%20or%20GitHub%3A%0A%0A1.%20What%20have%20you%20built%20that%20actually%20worked%3F%0A%0A2.%20Based%20on%20this%20page%2C%20where%20does%20Blue%20Lake%20make%20money%3F%0A%0A3.%20What%20would%20you%20build%20or%20fix%20first%3F%0A%0A4.%20What%20hours%20can%20you%20overlap%20with%20US%20Central%20Time%3F%0A%0AAttach%20your%20resume%20before%20sending.">Apply by Email</a>
+                    <a class="button secondary" href="#selection">See the Selection Process</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="band white" id="role">
+            <div class="grid">
+                <div>
+                    <h2 class="section-title">Not a normal sales role. Not a normal software role.</h2>
+                    <p class="lead">Blue Lake is the B2B revenue layer in a US real-estate operating system. HomeEasy is the B2C demand channel. The role sits between software, customer communication, data, and revenue operations.</p>
+                    <p>Technical skill is the entry ticket. The job is ownership: finding bottlenecks, building tools, working real counterparties, understanding the unit economics, and moving revenue through the system.</p>
+                </div>
+                <div class="operator-list">
+                    <article>
+                        <h3>Technical floor</h3>
+                        <p>You can code, debug, reason about systems, and use AI tools without surrendering judgment to them.</p>
+                    </article>
+                    <article>
+                        <h3>Commercial ownership</h3>
+                        <p>You understand where the money is made and act on the missing step, not only the assigned task.</p>
+                    </article>
+                    <article>
+                        <h3>Communication</h3>
+                        <p>You can write clearly and, for phone-facing seats, speak with enough fluency to work US customers and partners.</p>
+                    </article>
+                    <article>
+                        <h3>Remote operating rhythm</h3>
+                        <p>You can overlap with US Central Time and carry work without waiting for a narrow task list.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="band soft">
+            <div class="proof">
+                <div>
+                    <strong>B2B</strong>
+                    Owner, building, commission, and revenue workflows.
+                </div>
+                <div>
+                    <strong>B2C</strong>
+                    HomeEasy renter demand, qualification, follow-up, and matching.
+                </div>
+                <div>
+                    <strong>AI</strong>
+                    Agents and tools tied to commercial outcomes, not demos.
+                </div>
+            </div>
+        </section>
+
+        <section class="band white" id="selection">
+            <div class="grid">
+                <div>
+                    <h2 class="section-title">The process is built to find people who actually think.</h2>
+                    <p class="lead">AI may be used for building when authorized. It may not be used to fake understanding, summarize material instead of studying it, or manufacture a point of view.</p>
+                </div>
+                <div class="rules">
+                    <div class="rule">
+                        <div class="num">1</div>
+                        <div>
+                            <h3>Application</h3>
+                            <p>Send your resume plus direct answers to the application questions.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="num">2</div>
+                        <div>
+                            <h3>Data-room screen</h3>
+                            <p>Study the business and explain where revenue is made and what you would change.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="num">3</div>
+                        <div>
+                            <h3>Technical build</h3>
+                            <p>Build or analyze something useful from incomplete context and explain the commercial logic.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="num">4</div>
+                        <div>
+                            <h3>Live communication gate</h3>
+                            <p>Shortlisted candidates complete a written and verbal judgment assessment.</p>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="num">5</div>
+                        <div>
+                            <h3>Paid trial</h3>
+                            <p>Real production work begins only after the paid trial stage and required agreements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="band soft" id="apply">
+            <div class="application">
+                <h2 class="section-title">Apply</h2>
+                <p>Send one email to <strong>hr@homeeasy.com</strong> with the subject <strong>BlueLake Revenue Operator Application</strong>. Attach your resume and include:</p>
+                <ol class="application-steps">
+                    <li>Name, school, program, city, country.</li>
+                    <li>LinkedIn, GitHub, portfolio, or one working artifact.</li>
+                    <li>What you have built that actually worked.</li>
+                    <li>Where you think Blue Lake makes money.</li>
+                    <li>What you would build or fix first after reading this page.</li>
+                    <li>Your possible US Central Time overlap.</li>
+                </ol>
+                <p><a class="button primary" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application&body=Name%3A%0ASchool%20%2F%20Program%3A%0ACity%20%2F%20Country%3A%0ALinkedIn%20or%20GitHub%3A%0A%0A1.%20What%20have%20you%20built%20that%20actually%20worked%3F%0A%0A2.%20Based%20on%20this%20page%2C%20where%20does%20Blue%20Lake%20make%20money%3F%0A%0A3.%20What%20would%20you%20build%20or%20fix%20first%3F%0A%0A4.%20What%20hours%20can%20you%20overlap%20with%20US%20Central%20Time%3F%0A%0AAttach%20your%20resume%20before%20sending.">Start Application Email</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Blue Lake operates through affiliated US real-estate and insurance brands. US immersion, if offered, is for training and market understanding. Licensed in-person US real-estate activity is handled by authorized US personnel.
+    </footer>
+</body>
+</html>
