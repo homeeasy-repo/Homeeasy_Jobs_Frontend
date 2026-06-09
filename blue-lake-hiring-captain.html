@@ -9,13 +9,16 @@
             --ink: #111827;
             --muted: #52606d;
             --navy: #12355b;
+            --deep: #08192c;
             --teal: #0f766e;
+            --cyan: #25b7c8;
             --gold: #c9a646;
             --red: #9f1d35;
             --green: #13795b;
-            --paper: #f6f8fb;
+            --paper: #eef3f7;
             --white: #ffffff;
             --line: #c9d4df;
+            --shadow: 0 18px 42px rgba(8, 25, 44, 0.16);
         }
 
         * {
@@ -35,19 +38,51 @@
             color: inherit;
         }
 
+        button {
+            min-height: 42px;
+            border: 1px solid rgba(255,255,255,0.34);
+            border-radius: 5px;
+            background: var(--white);
+            color: var(--deep);
+            font: inherit;
+            font-weight: 800;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        .chrome {
+            min-height: 100vh;
+            background:
+                linear-gradient(180deg, #08192c 0, #0b2b46 310px, var(--paper) 310px, var(--paper) 100%);
+        }
+
         .topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 18px;
-            padding: 14px clamp(18px, 4vw, 48px);
-            background: #08192c;
+            padding: 16px clamp(18px, 4vw, 54px);
             color: var(--white);
         }
 
         .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 18px;
             font-weight: 800;
+        }
+
+        .mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--white);
+            background: #0d2742;
+            border: 4px solid #14233b;
+            box-shadow: inset 0 0 0 3px var(--cyan);
         }
 
         .nav {
@@ -58,167 +93,134 @@
         }
 
         .nav a {
+            color: rgba(255,255,255,0.88);
             text-decoration: none;
-            opacity: 0.9;
         }
 
         main {
-            padding: clamp(24px, 5vw, 48px);
+            width: min(1320px, calc(100% - 32px));
+            margin: 0 auto;
+            padding-bottom: 52px;
         }
 
-        .header {
+        .hero {
             display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-            gap: 24px;
-            align-items: end;
-            max-width: 1280px;
-            margin: 0 auto 24px;
+            grid-template-columns: minmax(0, 0.98fr) minmax(360px, 1.02fr);
+            gap: clamp(24px, 4vw, 46px);
+            align-items: start;
+            padding: 26px 0 30px;
+            color: var(--white);
         }
 
         h1 {
-            margin: 0 0 10px;
-            color: var(--navy);
-            font-size: clamp(32px, 4vw, 56px);
-            line-height: 1.02;
+            margin: 0 0 12px;
+            font-size: clamp(38px, 5vw, 72px);
+            line-height: 0.98;
             letter-spacing: 0;
         }
 
         .lead {
+            max-width: 720px;
             margin: 0;
-            max-width: 820px;
-            color: var(--muted);
-            font-size: 18px;
+            color: #dbeaf2;
+            font-size: clamp(18px, 2vw, 23px);
         }
 
-        .refresh {
+        .control-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-end;
             gap: 10px;
             align-items: center;
-        }
-
-        button {
-            min-height: 40px;
-            border: 1px solid var(--navy);
-            border-radius: 4px;
-            background: var(--navy);
-            color: var(--white);
-            font: inherit;
-            font-weight: 800;
-            padding: 9px 14px;
-            cursor: pointer;
+            margin-top: 24px;
         }
 
         .timestamp {
-            color: var(--muted);
+            color: rgba(255,255,255,0.74);
             font-size: 14px;
         }
 
-        .status-strip,
-        .grid,
-        .wide-grid {
-            display: grid;
-            max-width: 1280px;
-            margin: 0 auto;
-            gap: 16px;
+        .stack-stage {
+            position: relative;
+            min-height: 474px;
+            padding-top: 4px;
         }
 
-        .status-strip {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            margin-bottom: 16px;
-        }
-
-        .grid {
-            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-            margin-bottom: 16px;
-        }
-
-        .wide-grid {
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-        }
-
-        .panel,
-        .metric,
-        .row {
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 6px;
-        }
-
-        .panel {
+        .stack-card {
+            position: relative;
+            width: min(520px, 100%);
+            margin-left: auto;
+            margin-bottom: -18px;
             padding: 18px;
+            border: 1px solid rgba(255,255,255,0.72);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.96);
+            color: var(--ink);
+            box-shadow: var(--shadow);
+            transform-origin: center;
         }
 
-        .metric {
-            padding: 16px;
-            min-height: 116px;
-            border-top: 4px solid var(--teal);
+        .stack-card:nth-child(1) {
+            z-index: 6;
         }
 
-        .metric.warn {
-            border-top-color: var(--gold);
+        .stack-card:nth-child(2) {
+            z-index: 5;
+            transform: translateX(-18px) scale(0.985);
         }
 
-        .metric.bad {
-            border-top-color: var(--red);
+        .stack-card:nth-child(3) {
+            z-index: 4;
+            transform: translateX(10px) scale(0.97);
         }
 
-        .metric strong {
-            display: block;
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 8px;
+        .stack-card:nth-child(4) {
+            z-index: 3;
+            transform: translateX(-26px) scale(0.955);
         }
 
-        .metric span {
-            display: block;
-            color: var(--navy);
-            font-size: 30px;
-            font-weight: 800;
-        }
-
-        h2 {
-            margin: 0 0 14px;
+        .stack-card h2,
+        .panel h2 {
+            margin: 0 0 10px;
             color: var(--navy);
             font-size: 22px;
             letter-spacing: 0;
         }
 
-        .rows {
-            display: grid;
-            gap: 10px;
-        }
-
-        .row {
-            display: grid;
-            grid-template-columns: minmax(82px, 0.22fr) minmax(0, 0.78fr);
-            gap: 12px;
-            padding: 12px;
-            align-items: start;
-        }
-
-        .row .label {
+        .stack-card p {
+            margin: 0;
             color: var(--muted);
-            font-size: 13px;
-            font-weight: 800;
         }
 
-        .row .value {
-            min-width: 0;
+        .stack-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 18px;
+            align-items: center;
+        }
+
+        .headline-value {
+            display: block;
+            margin: 8px 0 4px;
+            color: var(--deep);
+            font-size: clamp(34px, 4vw, 54px);
+            font-weight: 900;
+            line-height: 1;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             min-height: 28px;
-            border-radius: 4px;
-            padding: 4px 8px;
+            border-radius: 999px;
+            padding: 4px 10px;
             font-size: 13px;
             font-weight: 800;
             color: var(--navy);
             background: #e9f2f6;
             border: 1px solid #c7dce7;
+            white-space: nowrap;
         }
 
         .badge.good {
@@ -239,29 +241,127 @@
             border-color: #e4a6b1;
         }
 
-        .table {
-            width: 100%;
-            border-collapse: collapse;
+        .surface {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin: 8px 0 18px;
+        }
+
+        .metric {
+            min-height: 118px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--white);
+            box-shadow: 0 12px 24px rgba(8,25,44,0.08);
+        }
+
+        .metric strong {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 9px;
+            text-transform: uppercase;
+        }
+
+        .metric span {
+            display: block;
+            color: var(--navy);
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+            gap: 16px;
+        }
+
+        .panel {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.96);
+            box-shadow: 0 14px 30px rgba(8,25,44,0.08);
+        }
+
+        .feed {
+            display: grid;
+            gap: 12px;
+        }
+
+        .bubble {
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            border: 1px solid #d9e4ed;
+            border-radius: 18px;
+            background: #f9fcfd;
+        }
+
+        .bubble.operator {
+            margin-left: 38px;
+            color: var(--white);
+            background: linear-gradient(135deg, #0e6390, #0f766e);
+            border-color: transparent;
+        }
+
+        .bubble.operator .subtle {
+            color: #d9f2f1;
+        }
+
+        .bubble strong {
+            color: inherit;
+        }
+
+        .subtle {
+            color: var(--muted);
             font-size: 14px;
         }
 
-        th,
-        td {
-            text-align: left;
-            padding: 10px 8px;
-            border-bottom: 1px solid var(--line);
-            vertical-align: top;
+        .cards {
+            display: grid;
+            gap: 12px;
         }
 
-        th {
-            color: var(--muted);
-            font-size: 12px;
-            text-transform: uppercase;
+        .deal-card {
+            position: relative;
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            border: 1px solid #d8e3ec;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 18px rgba(8,25,44,0.06);
+        }
+
+        .deal-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            bottom: 18px;
+            width: 4px;
+            border-radius: 0 4px 4px 0;
+            background: var(--teal);
+        }
+
+        .deal-top {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .deal-title {
+            font-weight: 900;
+            color: var(--navy);
         }
 
         .empty {
             color: var(--muted);
-            padding: 16px 0;
+            padding: 12px 0;
         }
 
         .error {
@@ -269,156 +369,214 @@
             font-weight: 800;
         }
 
-        @media (max-width: 920px) {
-            .header,
-            .grid,
-            .wide-grid,
-            .status-strip {
+        @media (max-width: 980px) {
+            .hero,
+            .dashboard,
+            .surface {
                 grid-template-columns: 1fr;
             }
 
-            .refresh {
-                justify-content: flex-start;
+            .stack-stage {
+                min-height: auto;
             }
 
-            .row {
-                grid-template-columns: 1fr;
+            .stack-card,
+            .stack-card:nth-child(n) {
+                width: 100%;
+                margin-bottom: 12px;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 620px) {
+            main {
+                width: min(100% - 20px, 1320px);
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .bubble.operator {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="brand">Blue Lake Hiring Captain</div>
-        <nav class="nav" aria-label="Hiring links">
-            <a href="blue-lake-revenue-operator.html">Candidate Funnel</a>
-            <a href="blue-lake-data-room.html">Packet I</a>
-        </nav>
-    </header>
+    <div class="chrome">
+        <header class="topbar">
+            <div class="brand"><span class="mark">BL</span> Hiring Captain</div>
+            <nav class="nav" aria-label="Hiring links">
+                <a href="blue-lake-revenue-operator.html">Candidate Funnel</a>
+                <a href="blue-lake-data-room.html">Packet I</a>
+            </nav>
+        </header>
 
-    <main>
-        <section class="header">
-            <div>
-                <h1>Hiring Captain Console</h1>
-                <p class="lead">Live operating state for intake, screening queue, university outreach, and the actions still blocked behind shadow mode.</p>
-            </div>
-            <div class="refresh">
-                <span class="timestamp" id="last-refresh">Not loaded yet</span>
-                <button type="button" id="refresh-button">Refresh</button>
-            </div>
-        </section>
+        <main>
+            <section class="hero">
+                <div>
+                    <h1>Captain is watching the hiring deal.</h1>
+                    <p class="lead">Live intake, queue, school outreach, bounces, and the action gates that still need to move from shadow to live.</p>
+                    <div class="control-row">
+                        <button type="button" id="refresh-button">Refresh Stack</button>
+                        <span class="timestamp" id="last-refresh">Not loaded yet</span>
+                    </div>
+                </div>
+                <div class="stack-stage" id="live-stack" aria-label="Live hiring stack"></div>
+            </section>
 
-        <section class="status-strip">
-            <div class="metric" id="metric-api"><strong>Intake API</strong><span>...</span></div>
-            <div class="metric" id="metric-active"><strong>Active Web Applicants</strong><span>...</span></div>
-            <div class="metric warn" id="metric-worker"><strong>Worker Mode</strong><span>...</span></div>
-            <div class="metric bad" id="metric-indeed"><strong>Indeed Actions</strong><span>...</span></div>
-        </section>
+            <section class="surface" aria-label="Hiring metrics">
+                <div class="metric" id="metric-api"><strong>Intake API</strong><span>...</span></div>
+                <div class="metric" id="metric-active"><strong>Active Web Applicants</strong><span>...</span></div>
+                <div class="metric" id="metric-worker"><strong>Worker Mode</strong><span>...</span></div>
+                <div class="metric" id="metric-indeed"><strong>Indeed Actions</strong><span>...</span></div>
+            </section>
 
-        <section class="grid">
-            <div class="panel">
-                <h2>Captain State</h2>
-                <div class="rows" id="captain-state"></div>
-            </div>
-            <div class="panel">
-                <h2>Latest Web Applications</h2>
-                <div id="recent-applications"></div>
-            </div>
-        </section>
-
-        <section class="wide-grid">
-            <div class="panel">
-                <h2>Queue Preview</h2>
-                <div id="queue-preview"></div>
-            </div>
-            <div class="panel">
-                <h2>Outreach</h2>
-                <div class="rows" id="outreach-state"></div>
-            </div>
-        </section>
-    </main>
+            <section class="dashboard">
+                <div class="panel">
+                    <h2>Operating Feed</h2>
+                    <div class="feed" id="operating-feed"></div>
+                </div>
+                <div class="panel">
+                    <h2>Latest Web Applications</h2>
+                    <div class="cards" id="recent-applications"></div>
+                </div>
+                <div class="panel">
+                    <h2>Queue Stack</h2>
+                    <div class="cards" id="queue-preview"></div>
+                </div>
+                <div class="panel">
+                    <h2>Outreach Stack</h2>
+                    <div class="cards" id="outreach-state"></div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
         const STATUS_ENDPOINT = "https://bluelake-hiring-intake-w74pxoam6q-uc.a.run.app/api/hiring/status";
         const REFRESH_MS = 30000;
+        const state = { loading: false };
 
-        const state = {
-            loading: false
-        };
+        function esc(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
 
         function badge(text, kind = "") {
-            return `<span class="badge ${kind}">${text}</span>`;
+            return `<span class="badge ${kind}">${esc(text)}</span>`;
         }
 
-        function setMetric(id, value, kind = "") {
-            const el = document.querySelector(`#${id} span`);
-            const box = document.getElementById(id);
-            el.textContent = value;
-            box.classList.remove("warn", "bad");
-            if (kind) box.classList.add(kind);
+        function setMetric(id, value) {
+            document.querySelector(`#${id} span`).textContent = value;
         }
 
-        function row(label, value) {
-            return `<div class="row"><div class="label">${label}</div><div class="value">${value}</div></div>`;
+        function stackCard(title, value, detail, badgeText, kind = "") {
+            return `
+                <article class="stack-card">
+                    <h2>${esc(title)}</h2>
+                    <span class="headline-value">${esc(value)}</span>
+                    <p>${esc(detail)}</p>
+                    <div class="stack-meta">${badge(badgeText, kind)}</div>
+                </article>
+            `;
         }
 
-        function table(items, columns) {
+        function bubble(title, detail, operator = false) {
+            return `
+                <div class="bubble ${operator ? "operator" : ""}">
+                    <strong>${esc(title)}</strong>
+                    <span class="subtle">${esc(detail)}</span>
+                </div>
+            `;
+        }
+
+        function dealCard(item, index) {
+            const statusKind = item.status === "awaiting_captain" ? "good" : "warn";
+            return `
+                <article class="deal-card">
+                    <div class="deal-top">
+                        <div>
+                            <div class="deal-title">#${esc(item.row_id)} ${esc(item.school || item.job_title || "Candidate")}</div>
+                            <div class="subtle">${esc(item.program || item.source || item.application_id || "")}</div>
+                        </div>
+                        ${badge(item.status || "unknown", statusKind)}
+                    </div>
+                    <div class="subtle">${esc(item.submitted_at || item.location || item.application_id || "")}</div>
+                    <div>${badge(item.has_packet ? "packet ready" : "packet missing", item.has_packet ? "good" : "warn")} ${badge(`stack ${index + 1}`)}</div>
+                </article>
+            `;
+        }
+
+        function renderCards(targetId, items, emptyText) {
+            const target = document.getElementById(targetId);
             if (!items || !items.length) {
-                return `<div class="empty">No records in this lane right now.</div>`;
+                target.innerHTML = `<div class="empty">${esc(emptyText)}</div>`;
+                return;
             }
-            const head = columns.map((col) => `<th>${col.label}</th>`).join("");
-            const body = items.map((item) => {
-                const cells = columns.map((col) => `<td>${col.render(item)}</td>`).join("");
-                return `<tr>${cells}</tr>`;
-            }).join("");
-            return `<table class="table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+            target.innerHTML = items.map(dealCard).join("");
+        }
+
+        function renderOutreach(outreach) {
+            const bounces = outreach.immediate_bounces || [];
+            const cards = [
+                {
+                    row_id: "HR",
+                    school: outreach.latest_wave || "Career-office wave",
+                    program: `${outreach.routes_sent || 0} sent / ${outreach.routes_targeted || 0} targeted`,
+                    status: "sent",
+                    has_packet: true,
+                    submitted_at: outreach.last_sent_utc || ""
+                },
+                ...bounces.map((item, index) => ({
+                    row_id: `B${index + 1}`,
+                    school: item.school,
+                    program: item.detail,
+                    status: item.type,
+                    has_packet: false,
+                    submitted_at: "delivery reconciliation"
+                }))
+            ];
+            renderCards("outreach-state", cards, "No outreach records loaded.");
         }
 
         function render(data) {
-            setMetric("metric-api", data.ok ? "LIVE" : "DOWN", data.ok ? "" : "bad");
-            setMetric("metric-active", String(data.intake.web_active || 0));
-            setMetric("metric-worker", data.worker.mode || "UNKNOWN", data.worker.mode === "SHADOW" ? "warn" : "");
-            setMetric("metric-indeed", data.limits.indeed_ads_live ? "LIVE" : "OFF", data.limits.indeed_ads_live ? "" : "bad");
-
             const worker = data.worker || {};
-            document.getElementById("captain-state").innerHTML = [
-                row("Service", `${badge(data.service.name, "good")} revision ${data.service.revision}`),
-                row("Intake", `${data.intake.web_total} total web records, ${data.intake.web_retired} retired verification records`),
-                row("Worker", `${badge(worker.mode, "warn")} cadence ${worker.cadence_seconds}s, renders databoxes: ${worker.renders_databoxes ? "yes" : "no"}`),
-                row("Databoxes", `${worker.databox_storage}`),
-                row("Sends", `candidate email ${badge(worker.sends_candidate_email ? "on" : "off", worker.sends_candidate_email ? "good" : "bad")} office email ${badge(worker.sends_career_office_email ? "on" : "off", worker.sends_career_office_email ? "good" : "bad")} Indeed ${badge(worker.takes_indeed_actions ? "on" : "off", worker.takes_indeed_actions ? "good" : "bad")}`),
-                row("Last Verification", `${worker.last_verified?.checked_utc || "unknown"}; row ${worker.last_verified?.verification_candidate_row || "n/a"} ${worker.last_verified?.verification_state || ""}`)
-            ].join("");
-
-            const appColumns = [
-                {label: "Row", render: (item) => `#${item.row_id}`},
-                {label: "School", render: (item) => `${item.school || "unknown"}<br><span class="timestamp">${item.program || ""}</span>`},
-                {label: "Source", render: (item) => item.source || "unknown"},
-                {label: "Status", render: (item) => badge(item.status, item.status === "awaiting_captain" ? "good" : "warn")},
-                {label: "Submitted", render: (item) => item.submitted_at || ""}
-            ];
-            document.getElementById("recent-applications").innerHTML = table(data.recent_web_applications, appColumns);
-
-            const queueColumns = [
-                {label: "Row", render: (item) => `#${item.row_id}`},
-                {label: "Application", render: (item) => item.application_id || ""},
-                {label: "Job", render: (item) => item.job_title || ""},
-                {label: "Status", render: (item) => badge(item.status, item.status === "awaiting_captain" ? "good" : "warn")},
-                {label: "Packet", render: (item) => item.has_packet ? badge("yes", "good") : badge("no", "warn")}
-            ];
-            document.getElementById("queue-preview").innerHTML = table(data.captain_queue_preview, queueColumns);
-
             const outreach = data.outreach || {};
-            const bounceRows = (outreach.immediate_bounces || []).map((item) => (
-                `<div>${badge(item.type, item.type.includes("bounce") ? "warn" : "")} <strong>${item.school}</strong><br><span class="timestamp">${item.detail}</span></div>`
-            )).join("");
-            document.getElementById("outreach-state").innerHTML = [
-                row("Mailbox", outreach.source || "unknown"),
-                row("Latest Wave", `${outreach.latest_wave || ""}<br><span class="timestamp">${outreach.last_sent_utc || ""}</span>`),
-                row("Routes", `${outreach.routes_sent || 0} sent / ${outreach.routes_targeted || 0} targeted`),
-                row("Held", (outreach.held_for_confirmation || []).join(", ") || "none"),
-                row("Bounces", bounceRows || "none observed")
+            const active = data.intake.web_active || 0;
+            const total = data.intake.web_total || 0;
+            const retired = data.intake.web_retired || 0;
+            const queue = data.captain_queue_preview || [];
+
+            setMetric("metric-api", data.ok ? "LIVE" : "DOWN");
+            setMetric("metric-active", String(active));
+            setMetric("metric-worker", worker.mode || "UNKNOWN");
+            setMetric("metric-indeed", data.limits.indeed_ads_live ? "LIVE" : "OFF");
+
+            document.getElementById("live-stack").innerHTML = [
+                stackCard("Intake API", data.service.revision || "unknown", "Public form is writing into indeedcandidate and exposing status.", "live", "good"),
+                stackCard("Applicant Lane", `${active} active`, `${total} web records, ${retired} retired verification rows.`, active > 0 ? "needs screen" : "clear", active > 0 ? "good" : ""),
+                stackCard("Captain Worker", worker.mode || "unknown", `Runs every ${worker.cadence_seconds || "?"}s and renders databoxes.`, worker.renders_databoxes ? "databoxes on" : "databoxes off", worker.mode === "SHADOW" ? "warn" : "good"),
+                stackCard("Action Gates", data.limits.indeed_ads_live ? "Indeed live" : "Indeed off", data.limits.durable_databoxes_live ? "Durable databoxes are live." : "Indeed actions, candidate sends, and durable databoxes are not live.", data.limits.indeed_ads_live ? "go" : "blocked", data.limits.indeed_ads_live ? "good" : "bad")
             ].join("");
+
+            document.getElementById("operating-feed").innerHTML = [
+                bubble("Captain pulse", `Status pulled from ${data.service.name} ${data.service.revision}.`, true),
+                bubble("Queue read", `${queue.length} rows visible in the current captain preview. Active web applicants: ${active}.`),
+                bubble("Outreach", `${outreach.routes_sent || 0} university routes sent from ${outreach.source || "HR"}, with ${(outreach.immediate_bounces || []).length} immediate bounce records.`),
+                bubble("Blocked actions", `Candidate email: ${worker.sends_candidate_email ? "on" : "off"}. Office replies: ${worker.sends_career_office_email ? "on" : "off"}. Indeed: ${worker.takes_indeed_actions ? "on" : "off"}.`, true),
+                bubble("Storage", worker.databox_storage || "unknown")
+            ].join("");
+
+            renderCards("recent-applications", data.recent_web_applications || [], "No web applications in this lane right now.");
+            renderCards("queue-preview", queue, "No candidate rows in the preview right now.");
+            renderOutreach(outreach);
 
             document.getElementById("last-refresh").textContent = `Updated ${new Date().toLocaleString()} from ${data.generated_at}`;
         }
@@ -427,13 +585,13 @@
             if (state.loading) return;
             state.loading = true;
             try {
-                const response = await fetch(`${STATUS_ENDPOINT}?t=${Date.now()}`, {cache: "no-store"});
+                const response = await fetch(`${STATUS_ENDPOINT}?t=${Date.now()}`, { cache: "no-store" });
                 const data = await response.json();
                 if (!response.ok || !data.ok) throw new Error(data.error || "status unavailable");
                 render(data);
             } catch (error) {
-                setMetric("metric-api", "DOWN", "bad");
-                document.getElementById("last-refresh").innerHTML = `<span class="error">${error.message}</span>`;
+                setMetric("metric-api", "DOWN");
+                document.getElementById("last-refresh").innerHTML = `<span class="error">${esc(error.message)}</span>`;
             } finally {
                 state.loading = false;
             }
