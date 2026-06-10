@@ -155,8 +155,15 @@
             gap: 16px;
         }
 
+        .stage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
         .tile,
-        .prompt {
+        .prompt,
+        .stage {
             background: var(--white);
             border: 1px solid var(--line);
             border-radius: 6px;
@@ -169,6 +176,33 @@
 
         .prompt {
             background: #fbfcfe;
+        }
+
+        .stage {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+        }
+
+        .stage-number {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .stage small {
+            display: block;
+            color: var(--teal);
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         ol,
@@ -222,6 +256,7 @@
 
             .grid,
             .tiles,
+            .stage-grid,
             .row {
                 grid-template-columns: 1fr;
             }
@@ -297,6 +332,65 @@
                     <article class="tile">
                         <h3>Agentic leverage</h3>
                         <p>Think about the continuous captain model: context, decomposition, sub-agent work, observability, and escalation.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="band white">
+            <div class="wrap grid">
+                <div>
+                    <h2>The Assessment Path</h2>
+                    <p class="muted">This public room is Packet I. Later packets are released only after the candidate has earned them. That keeps the burden on the candidate while protecting internal scoring guides, answer keys, and production context.</p>
+                </div>
+                <div class="stage-grid">
+                    <article class="stage">
+                        <div class="stage-number">1</div>
+                        <div>
+                            <small>Public</small>
+                            <h3>Packet I: business read</h3>
+                            <p>Study Blue Lake/HomeEasy, submit a point of view, technical evidence, revenue thesis, first fix, CT overlap, and compensation bid.</p>
+                        </div>
+                    </article>
+                    <article class="stage">
+                        <div class="stage-number">2</div>
+                        <div>
+                            <small>Email release</small>
+                            <h3>Packet II: build screen</h3>
+                            <p>Build a small Revenue Captain service from messy candidate/source/event records with tests, idempotency, reason codes, and a walkthrough.</p>
+                        </div>
+                    </article>
+                    <article class="stage">
+                        <div class="stage-number">3</div>
+                        <div>
+                            <small>Live, no AI</small>
+                            <h3>Technical fundamentals</h3>
+                            <p>Reason through data structures, databases, concurrency, debugging, and system design without a model writing the answer.</p>
+                        </div>
+                    </article>
+                    <article class="stage">
+                        <div class="stage-number">4</div>
+                        <div>
+                            <small>Judgment</small>
+                            <h3>Commercial simulation</h3>
+                            <p>Triage candidate, source, renter, building, and revenue evidence; decide the next action and explain what information is missing.</p>
+                        </div>
+                    </article>
+                    <article class="stage">
+                        <div class="stage-number">5</div>
+                        <div>
+                            <small>Paid</small>
+                            <h3>Sandbox trial</h3>
+                            <p>Complete a small audited work product against sanitized operating data before touching any real production workflow.</p>
+                        </div>
+                    </article>
+                    <article class="stage">
+                        <div class="stage-number">6</div>
+                        <div>
+                            <small>Decision</small>
+                            <h3>Offer, park, or recycle</h3>
+                            <p>Finalists move to role/comp discussion. Promising candidates who are not ready are remembered for future cohorts.</p>
+                        </div>
                     </article>
                 </div>
             </div>
