@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Lake Hiring Captain Console</title>
+    <title>Blue Lake Hiring Captain</title>
     <style>
         :root {
             --ink: #111827;
-            --muted: #52606d;
-            --navy: #12355b;
+            --muted: #6b7280;
             --deep: #08192c;
+            --navy: #12355b;
+            --blue: #1797ff;
             --teal: #0f766e;
             --cyan: #25b7c8;
             --gold: #c9a646;
             --red: #9f1d35;
             --green: #13795b;
-            --paper: #eef3f7;
+            --paper: #edf2f6;
+            --line: #d8e2eb;
             --white: #ffffff;
-            --line: #c9d4df;
-            --shadow: 0 18px 42px rgba(8, 25, 44, 0.16);
         }
 
         * {
@@ -27,10 +27,10 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Inter, Arial, Helvetica, sans-serif;
             color: var(--ink);
             background: var(--paper);
-            line-height: 1.45;
             letter-spacing: 0;
         }
 
@@ -40,20 +40,20 @@
 
         button {
             min-height: 42px;
-            border: 1px solid rgba(255,255,255,0.34);
-            border-radius: 5px;
-            background: var(--white);
-            color: var(--deep);
+            border: 0;
+            border-radius: 22px;
+            background: var(--deep);
+            color: var(--white);
+            padding: 10px 16px;
             font: inherit;
             font-weight: 800;
-            padding: 10px 14px;
             cursor: pointer;
         }
 
-        .chrome {
+        .page {
             min-height: 100vh;
-            background:
-                linear-gradient(180deg, #08192c 0, #0b2b46 310px, var(--paper) 310px, var(--paper) 100%);
+            display: grid;
+            grid-template-rows: auto 1fr;
         }
 
         .topbar {
@@ -61,21 +61,23 @@
             align-items: center;
             justify-content: space-between;
             gap: 18px;
-            padding: 16px clamp(18px, 4vw, 54px);
-            color: var(--white);
+            padding: 16px clamp(18px, 4vw, 56px);
+            background: rgba(255,255,255,0.88);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(18px);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 18px;
-            font-weight: 800;
+            gap: 12px;
+            font-weight: 900;
+            color: var(--deep);
         }
 
-        .mark {
-            width: 38px;
-            height: 38px;
+        .logo {
+            width: 40px;
+            height: 40px;
             display: grid;
             place-items: center;
             border-radius: 50%;
@@ -89,137 +91,285 @@
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
+            color: var(--muted);
             font-size: 14px;
+            font-weight: 700;
         }
 
         .nav a {
-            color: rgba(255,255,255,0.88);
             text-decoration: none;
         }
 
-        main {
-            width: min(1320px, calc(100% - 32px));
+        .stage {
+            width: min(1380px, calc(100% - 28px));
             margin: 0 auto;
-            padding-bottom: 52px;
+            display: grid;
+            grid-template-columns: minmax(350px, 470px) minmax(0, 1fr);
+            gap: clamp(24px, 5vw, 70px);
+            align-items: center;
+            padding: clamp(22px, 5vw, 54px) 0;
         }
 
-        .hero {
+        .phone {
+            position: relative;
+            width: min(100%, 430px);
+            min-height: 790px;
+            margin: 0 auto;
+            border-radius: 46px;
+            background: #fbfbfc;
+            box-shadow: 0 34px 70px rgba(8,25,44,0.22), inset 0 0 0 10px #101827;
+            overflow: hidden;
+        }
+
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            width: 132px;
+            height: 30px;
+            transform: translateX(-50%);
+            border-radius: 0 0 18px 18px;
+            background: #101827;
+            z-index: 3;
+        }
+
+        .phone-status {
+            height: 58px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            padding: 0 34px 8px;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .phone-header {
             display: grid;
-            grid-template-columns: minmax(0, 0.98fr) minmax(360px, 1.02fr);
-            gap: clamp(24px, 4vw, 46px);
-            align-items: start;
-            padding: 26px 0 30px;
+            place-items: center;
+            gap: 4px;
+            padding: 4px 22px 12px;
+            border-bottom: 1px solid #e8edf2;
+        }
+
+        .captain-avatar {
+            width: 88px;
+            height: 88px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
             color: var(--white);
+            font-size: 31px;
+            font-weight: 900;
+            background: #0e2238;
+            border: 7px solid #18243c;
+            box-shadow: inset 0 0 0 5px #2bd5d5, 0 14px 24px rgba(8,25,44,0.18);
+        }
+
+        .phone-header strong {
+            font-size: 20px;
+        }
+
+        .phone-header span {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .thread {
+            height: 604px;
+            overflow: hidden;
+            padding: 18px 18px 92px;
+            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+        }
+
+        .day-pill {
+            width: fit-content;
+            margin: 0 auto 14px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            color: var(--muted);
+            background: #edf2f7;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .message {
+            max-width: 83%;
+            margin: 0 0 10px;
+            padding: 13px 15px;
+            border-radius: 22px;
+            font-size: 17px;
+            line-height: 1.25;
+            box-shadow: 0 5px 12px rgba(8,25,44,0.06);
+        }
+
+        .message.left {
+            color: #111827;
+            background: #e9eaed;
+            border-bottom-left-radius: 6px;
+        }
+
+        .message.right {
+            margin-left: auto;
+            color: #ffffff;
+            background: #1d9bff;
+            border-bottom-right-radius: 6px;
+        }
+
+        .message small {
+            display: block;
+            margin-top: 6px;
+            color: rgba(255,255,255,0.78);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .composer {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 22px;
+            display: grid;
+            grid-template-columns: 44px 1fr 44px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .circle-button,
+        .voice-dot {
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #6b7280;
+            background: #ffffff;
+            border: 1px solid #e2e8ef;
+            font-size: 26px;
+        }
+
+        .input-pill {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border: 1px solid #e2e8ef;
+            border-radius: 24px;
+            color: #9aa3af;
+            background: #ffffff;
+            font-size: 18px;
+        }
+
+        .control {
+            display: grid;
+            gap: 22px;
+        }
+
+        .headline {
+            max-width: 720px;
         }
 
         h1 {
-            margin: 0 0 12px;
-            font-size: clamp(38px, 5vw, 72px);
-            line-height: 0.98;
+            margin: 0 0 14px;
+            color: var(--deep);
+            font-size: clamp(44px, 6vw, 86px);
+            line-height: 0.94;
             letter-spacing: 0;
         }
 
-        .lead {
-            max-width: 720px;
+        .headline p {
+            max-width: 680px;
             margin: 0;
-            color: #dbeaf2;
+            color: #415466;
             font-size: clamp(18px, 2vw, 23px);
+            line-height: 1.35;
         }
 
-        .control-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            margin-top: 24px;
-        }
-
-        .timestamp {
-            color: rgba(255,255,255,0.74);
-            font-size: 14px;
-        }
-
-        .stack-stage {
+        .deck-wrap {
             position: relative;
-            min-height: 474px;
-            padding-top: 4px;
+            min-height: 360px;
         }
 
-        .stack-card {
-            position: relative;
-            width: min(520px, 100%);
-            margin-left: auto;
-            margin-bottom: -18px;
-            padding: 18px;
-            border: 1px solid rgba(255,255,255,0.72);
-            border-radius: 22px;
-            background: rgba(255,255,255,0.96);
-            color: var(--ink);
-            box-shadow: var(--shadow);
-            transform-origin: center;
+        .deck-card {
+            position: absolute;
+            width: min(720px, 100%);
+            min-height: 214px;
+            padding: 22px;
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 28px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 24px 50px rgba(8,25,44,0.16);
         }
 
-        .stack-card:nth-child(1) {
-            z-index: 6;
-        }
-
-        .stack-card:nth-child(2) {
-            z-index: 5;
-            transform: translateX(-18px) scale(0.985);
-        }
-
-        .stack-card:nth-child(3) {
+        .deck-card:nth-child(1) {
+            top: 0;
+            left: 0;
             z-index: 4;
-            transform: translateX(10px) scale(0.97);
         }
 
-        .stack-card:nth-child(4) {
+        .deck-card:nth-child(2) {
+            top: 48px;
+            left: 34px;
             z-index: 3;
-            transform: translateX(-26px) scale(0.955);
+            transform: scale(0.985);
         }
 
-        .stack-card h2,
-        .panel h2 {
-            margin: 0 0 10px;
+        .deck-card:nth-child(3) {
+            top: 96px;
+            left: 68px;
+            z-index: 2;
+            transform: scale(0.97);
+        }
+
+        .deck-card:nth-child(4) {
+            top: 144px;
+            left: 102px;
+            z-index: 1;
+            transform: scale(0.955);
+        }
+
+        .deck-card h2 {
+            margin: 0 0 8px;
             color: var(--navy);
-            font-size: 22px;
+            font-size: 24px;
             letter-spacing: 0;
         }
 
-        .stack-card p {
+        .deck-value {
+            display: block;
+            margin: 8px 0;
+            color: var(--deep);
+            font-size: clamp(42px, 5vw, 72px);
+            font-weight: 900;
+            line-height: 0.95;
+        }
+
+        .deck-card p {
+            max-width: 560px;
             margin: 0;
             color: var(--muted);
+            font-size: 16px;
         }
 
-        .stack-meta {
+        .badge-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 10px;
+            gap: 8px;
             margin-top: 18px;
-            align-items: center;
-        }
-
-        .headline-value {
-            display: block;
-            margin: 8px 0 4px;
-            color: var(--deep);
-            font-size: clamp(34px, 4vw, 54px);
-            font-weight: 900;
-            line-height: 1;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            min-height: 28px;
+            min-height: 30px;
             border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 13px;
-            font-weight: 800;
+            padding: 5px 11px;
             color: var(--navy);
-            background: #e9f2f6;
+            background: #e8f3f7;
             border: 1px solid #c7dce7;
+            font-size: 13px;
+            font-weight: 900;
             white-space: nowrap;
         }
 
@@ -241,215 +391,163 @@
             border-color: #e4a6b1;
         }
 
-        .surface {
+        .lower-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 14px;
-            margin: 8px 0 18px;
-        }
-
-        .metric {
-            min-height: 118px;
-            padding: 16px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            background: var(--white);
-            box-shadow: 0 12px 24px rgba(8,25,44,0.08);
-        }
-
-        .metric strong {
-            display: block;
-            color: var(--muted);
-            font-size: 12px;
-            margin-bottom: 9px;
-            text-transform: uppercase;
-        }
-
-        .metric span {
-            display: block;
-            color: var(--navy);
-            font-size: 30px;
-            font-weight: 900;
-        }
-
-        .dashboard {
-            display: grid;
-            grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 16px;
         }
 
         .panel {
             padding: 18px;
             border: 1px solid var(--line);
-            border-radius: 18px;
-            background: rgba(255,255,255,0.96);
-            box-shadow: 0 14px 30px rgba(8,25,44,0.08);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.88);
+            box-shadow: 0 16px 32px rgba(8,25,44,0.08);
         }
 
-        .feed {
-            display: grid;
-            gap: 12px;
+        .panel h2 {
+            margin: 0 0 14px;
+            color: var(--navy);
+            font-size: 21px;
+            letter-spacing: 0;
         }
 
-        .bubble {
+        .mini-stack {
             display: grid;
-            gap: 8px;
+            gap: 10px;
+        }
+
+        .mini-card {
+            display: grid;
+            gap: 6px;
             padding: 14px;
-            border: 1px solid #d9e4ed;
-            border-radius: 18px;
-            background: #f9fcfd;
+            border: 1px solid #d8e3ec;
+            border-radius: 17px;
+            background: #ffffff;
         }
 
-        .bubble.operator {
-            margin-left: 38px;
-            color: var(--white);
-            background: linear-gradient(135deg, #0e6390, #0f766e);
-            border-color: transparent;
+        .mini-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: start;
         }
 
-        .bubble.operator .subtle {
-            color: #d9f2f1;
-        }
-
-        .bubble strong {
-            color: inherit;
+        .mini-title {
+            color: var(--deep);
+            font-weight: 900;
         }
 
         .subtle {
             color: var(--muted);
             font-size: 14px;
-        }
-
-        .cards {
-            display: grid;
-            gap: 12px;
-        }
-
-        .deal-card {
-            position: relative;
-            display: grid;
-            gap: 8px;
-            padding: 14px;
-            border: 1px solid #d8e3ec;
-            border-radius: 16px;
-            background: #ffffff;
-            box-shadow: 0 8px 18px rgba(8,25,44,0.06);
-        }
-
-        .deal-card::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 18px;
-            bottom: 18px;
-            width: 4px;
-            border-radius: 0 4px 4px 0;
-            background: var(--teal);
-        }
-
-        .deal-top {
-            display: flex;
-            gap: 10px;
-            justify-content: space-between;
-            align-items: start;
-        }
-
-        .deal-title {
-            font-weight: 900;
-            color: var(--navy);
-        }
-
-        .empty {
-            color: var(--muted);
-            padding: 12px 0;
+            line-height: 1.35;
         }
 
         .error {
             color: var(--red);
-            font-weight: 800;
+            font-weight: 900;
         }
 
-        @media (max-width: 980px) {
-            .hero,
-            .dashboard,
-            .surface {
+        @media (max-width: 1080px) {
+            .stage,
+            .lower-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stack-stage {
-                min-height: auto;
+            .phone {
+                min-height: 760px;
             }
 
-            .stack-card,
-            .stack-card:nth-child(n) {
-                width: 100%;
-                margin-bottom: 12px;
+            .deck-wrap {
+                min-height: auto;
+                display: grid;
+                gap: 12px;
+            }
+
+            .deck-card,
+            .deck-card:nth-child(n) {
+                position: relative;
+                top: auto;
+                left: auto;
                 transform: none;
+                min-height: auto;
             }
         }
 
-        @media (max-width: 620px) {
-            main {
-                width: min(100% - 20px, 1320px);
-            }
-
+        @media (max-width: 560px) {
             .topbar {
                 align-items: flex-start;
                 flex-direction: column;
             }
 
-            .bubble.operator {
-                margin-left: 0;
+            .stage {
+                width: min(100% - 18px, 1380px);
+            }
+
+            .phone {
+                border-radius: 34px;
+                min-height: 720px;
+                box-shadow: inset 0 0 0 7px #101827, 0 18px 44px rgba(8,25,44,0.2);
+            }
+
+            .thread {
+                height: 542px;
+            }
+
+            .message {
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="chrome">
+    <div class="page">
         <header class="topbar">
-            <div class="brand"><span class="mark">BL</span> Hiring Captain</div>
+            <div class="brand"><span class="logo">BL</span> Hiring Captain</div>
             <nav class="nav" aria-label="Hiring links">
                 <a href="blue-lake-revenue-operator.html">Candidate Funnel</a>
                 <a href="blue-lake-data-room.html">Packet I</a>
             </nav>
         </header>
 
-        <main>
-            <section class="hero">
-                <div>
-                    <h1>Captain is watching the hiring deal.</h1>
-                    <p class="lead">Live intake, queue, school outreach, bounces, and the action gates that still need to move from shadow to live.</p>
-                    <div class="control-row">
-                        <button type="button" id="refresh-button">Refresh Stack</button>
-                        <span class="timestamp" id="last-refresh">Not loaded yet</span>
+        <main class="stage">
+            <section class="phone" aria-label="Hiring Captain live thread">
+                <div class="phone-status"><span>9:41</span><span>5G 100</span></div>
+                <div class="phone-header">
+                    <div class="captain-avatar">BL</div>
+                    <strong>Hiring Captain</strong>
+                    <span id="phone-revision">Connecting...</span>
+                </div>
+                <div class="thread" id="thread"></div>
+                <div class="composer">
+                    <div class="circle-button">+</div>
+                    <div class="input-pill">Ask Captain</div>
+                    <div class="voice-dot">•</div>
+                </div>
+            </section>
+
+            <section class="control">
+                <div class="headline">
+                    <h1>Every hire is a deal.</h1>
+                    <p>The captain watches intake, school routes, bounces, queue pressure, and action gates in one live surface.</p>
+                    <div class="badge-row">
+                        <button type="button" id="refresh-button">Refresh captain</button>
+                        <span class="subtle" id="last-refresh">Not loaded yet</span>
                     </div>
                 </div>
-                <div class="stack-stage" id="live-stack" aria-label="Live hiring stack"></div>
-            </section>
 
-            <section class="surface" aria-label="Hiring metrics">
-                <div class="metric" id="metric-api"><strong>Intake API</strong><span>...</span></div>
-                <div class="metric" id="metric-active"><strong>Active Web Applicants</strong><span>...</span></div>
-                <div class="metric" id="metric-worker"><strong>Worker Mode</strong><span>...</span></div>
-                <div class="metric" id="metric-indeed"><strong>Indeed Actions</strong><span>...</span></div>
-            </section>
+                <div class="deck-wrap" id="deck"></div>
 
-            <section class="dashboard">
-                <div class="panel">
-                    <h2>Operating Feed</h2>
-                    <div class="feed" id="operating-feed"></div>
-                </div>
-                <div class="panel">
-                    <h2>Latest Web Applications</h2>
-                    <div class="cards" id="recent-applications"></div>
-                </div>
-                <div class="panel">
-                    <h2>Queue Stack</h2>
-                    <div class="cards" id="queue-preview"></div>
-                </div>
-                <div class="panel">
-                    <h2>Outreach Stack</h2>
-                    <div class="cards" id="outreach-state"></div>
+                <div class="lower-grid">
+                    <div class="panel">
+                        <h2>Applicant Stack</h2>
+                        <div class="mini-stack" id="recent-applications"></div>
+                    </div>
+                    <div class="panel">
+                        <h2>Outreach Stack</h2>
+                        <div class="mini-stack" id="outreach-state"></div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -473,111 +571,96 @@
             return `<span class="badge ${kind}">${esc(text)}</span>`;
         }
 
-        function setMetric(id, value) {
-            document.querySelector(`#${id} span`).textContent = value;
+        function message(text, side = "left", meta = "") {
+            return `<div class="message ${side}">${esc(text)}${meta ? `<small>${esc(meta)}</small>` : ""}</div>`;
         }
 
-        function stackCard(title, value, detail, badgeText, kind = "") {
+        function deckCard(title, value, detail, badges) {
             return `
-                <article class="stack-card">
+                <article class="deck-card">
                     <h2>${esc(title)}</h2>
-                    <span class="headline-value">${esc(value)}</span>
+                    <span class="deck-value">${esc(value)}</span>
                     <p>${esc(detail)}</p>
-                    <div class="stack-meta">${badge(badgeText, kind)}</div>
+                    <div class="badge-row">${badges.join("")}</div>
                 </article>
             `;
         }
 
-        function bubble(title, detail, operator = false) {
+        function miniCard(item, fallbackTitle = "Record") {
+            const status = item.status || "unknown";
+            const kind = status === "awaiting_captain" || status === "sent" ? "good" : status.includes("bounce") || status === "retired" ? "warn" : "";
             return `
-                <div class="bubble ${operator ? "operator" : ""}">
-                    <strong>${esc(title)}</strong>
-                    <span class="subtle">${esc(detail)}</span>
-                </div>
-            `;
-        }
-
-        function dealCard(item, index) {
-            const statusKind = item.status === "awaiting_captain" ? "good" : "warn";
-            return `
-                <article class="deal-card">
-                    <div class="deal-top">
+                <article class="mini-card">
+                    <div class="mini-top">
                         <div>
-                            <div class="deal-title">#${esc(item.row_id)} ${esc(item.school || item.job_title || "Candidate")}</div>
+                            <div class="mini-title">#${esc(item.row_id || "")} ${esc(item.school || item.job_title || fallbackTitle)}</div>
                             <div class="subtle">${esc(item.program || item.source || item.application_id || "")}</div>
                         </div>
-                        ${badge(item.status || "unknown", statusKind)}
+                        ${badge(status, kind)}
                     </div>
-                    <div class="subtle">${esc(item.submitted_at || item.location || item.application_id || "")}</div>
-                    <div>${badge(item.has_packet ? "packet ready" : "packet missing", item.has_packet ? "good" : "warn")} ${badge(`stack ${index + 1}`)}</div>
+                    <div class="subtle">${esc(item.submitted_at || item.location || item.detail || "")}</div>
                 </article>
             `;
         }
 
-        function renderCards(targetId, items, emptyText) {
+        function renderMiniStack(targetId, items, emptyText, fallbackTitle) {
             const target = document.getElementById(targetId);
             if (!items || !items.length) {
-                target.innerHTML = `<div class="empty">${esc(emptyText)}</div>`;
+                target.innerHTML = `<div class="subtle">${esc(emptyText)}</div>`;
                 return;
             }
-            target.innerHTML = items.map(dealCard).join("");
+            target.innerHTML = items.map((item) => miniCard(item, fallbackTitle)).join("");
         }
 
         function renderOutreach(outreach) {
-            const bounces = outreach.immediate_bounces || [];
             const cards = [
                 {
                     row_id: "HR",
                     school: outreach.latest_wave || "Career-office wave",
                     program: `${outreach.routes_sent || 0} sent / ${outreach.routes_targeted || 0} targeted`,
                     status: "sent",
-                    has_packet: true,
                     submitted_at: outreach.last_sent_utc || ""
                 },
-                ...bounces.map((item, index) => ({
+                ...(outreach.immediate_bounces || []).map((item, index) => ({
                     row_id: `B${index + 1}`,
                     school: item.school,
                     program: item.detail,
                     status: item.type,
-                    has_packet: false,
                     submitted_at: "delivery reconciliation"
                 }))
             ];
-            renderCards("outreach-state", cards, "No outreach records loaded.");
+            renderMiniStack("outreach-state", cards, "No outreach state loaded.", "Outreach");
         }
 
         function render(data) {
             const worker = data.worker || {};
             const outreach = data.outreach || {};
+            const limits = data.limits || {};
             const active = data.intake.web_active || 0;
             const total = data.intake.web_total || 0;
             const retired = data.intake.web_retired || 0;
             const queue = data.captain_queue_preview || [];
+            const bounces = outreach.immediate_bounces || [];
 
-            setMetric("metric-api", data.ok ? "LIVE" : "DOWN");
-            setMetric("metric-active", String(active));
-            setMetric("metric-worker", worker.mode || "UNKNOWN");
-            setMetric("metric-indeed", data.limits.indeed_ads_live ? "LIVE" : "OFF");
+            document.getElementById("phone-revision").textContent = data.service.revision || "live";
+            document.getElementById("thread").innerHTML = `
+                <div class="day-pill">Today</div>
+                ${message(`Intake confirmed. ${total} web records are visible, ${active} active, ${retired} retired verification rows.`)}
+                ${message(`Queue read complete. I can see ${queue.length} candidate rows in the current captain preview.`)}
+                ${message(`University wave: ${outreach.routes_sent || 0}/${outreach.routes_targeted || 0} routes sent from ${outreach.source || "HR"}. ${bounces.length} immediate bounce records.`)}
+                ${message(`Keep it honest: Indeed actions are ${limits.indeed_ads_live ? "live" : "off"} and durable databoxes are ${limits.durable_databoxes_live ? "live" : "off"}.`, "right", "Captain status")}
+                ${message(`Worker mode is ${worker.mode || "unknown"}. Candidate sends and career-office replies are ${worker.sends_candidate_email ? "on" : "off"} / ${worker.sends_career_office_email ? "on" : "off"}.`)}
+            `;
 
-            document.getElementById("live-stack").innerHTML = [
-                stackCard("Intake API", data.service.revision || "unknown", "Public form is writing into indeedcandidate and exposing status.", "live", "good"),
-                stackCard("Applicant Lane", `${active} active`, `${total} web records, ${retired} retired verification rows.`, active > 0 ? "needs screen" : "clear", active > 0 ? "good" : ""),
-                stackCard("Captain Worker", worker.mode || "unknown", `Runs every ${worker.cadence_seconds || "?"}s and renders databoxes.`, worker.renders_databoxes ? "databoxes on" : "databoxes off", worker.mode === "SHADOW" ? "warn" : "good"),
-                stackCard("Action Gates", data.limits.indeed_ads_live ? "Indeed live" : "Indeed off", data.limits.durable_databoxes_live ? "Durable databoxes are live." : "Indeed actions, candidate sends, and durable databoxes are not live.", data.limits.indeed_ads_live ? "go" : "blocked", data.limits.indeed_ads_live ? "good" : "bad")
+            document.getElementById("deck").innerHTML = [
+                deckCard("Live Intake", data.service.revision || "unknown", "Public application form is connected to the candidate table.", [badge("API live", "good"), badge(`${active} active`)]),
+                deckCard("Captain Queue", `${queue.length} rows`, "Preview rows are available for screening composition and databox rendering.", [badge(worker.mode || "unknown", worker.mode === "SHADOW" ? "warn" : "good"), badge("polls every 30s")]),
+                deckCard("School Outreach", `${outreach.routes_sent || 0} sent`, `${outreach.held_for_confirmation?.length || 0} routes held for confirmation; ${bounces.length} bounce records found.`, [badge("HR mailbox"), badge(bounces.length ? "bounces tracked" : "clean", bounces.length ? "warn" : "good")]),
+                deckCard("Action Gates", limits.indeed_ads_live ? "ready" : "blocked", "Indeed posting, autonomous candidate sends, and durable databoxes are visible as gates until they are live.", [badge(limits.indeed_ads_live ? "Indeed on" : "Indeed off", limits.indeed_ads_live ? "good" : "bad"), badge(limits.durable_databoxes_live ? "databox durable" : "databox local", limits.durable_databoxes_live ? "good" : "warn")])
             ].join("");
 
-            document.getElementById("operating-feed").innerHTML = [
-                bubble("Captain pulse", `Status pulled from ${data.service.name} ${data.service.revision}.`, true),
-                bubble("Queue read", `${queue.length} rows visible in the current captain preview. Active web applicants: ${active}.`),
-                bubble("Outreach", `${outreach.routes_sent || 0} university routes sent from ${outreach.source || "HR"}, with ${(outreach.immediate_bounces || []).length} immediate bounce records.`),
-                bubble("Blocked actions", `Candidate email: ${worker.sends_candidate_email ? "on" : "off"}. Office replies: ${worker.sends_career_office_email ? "on" : "off"}. Indeed: ${worker.takes_indeed_actions ? "on" : "off"}.`, true),
-                bubble("Storage", worker.databox_storage || "unknown")
-            ].join("");
-
-            renderCards("recent-applications", data.recent_web_applications || [], "No web applications in this lane right now.");
-            renderCards("queue-preview", queue, "No candidate rows in the preview right now.");
+            renderMiniStack("recent-applications", data.recent_web_applications || [], "No web applications yet.", "Candidate");
             renderOutreach(outreach);
-
             document.getElementById("last-refresh").textContent = `Updated ${new Date().toLocaleString()} from ${data.generated_at}`;
         }
 
@@ -590,8 +673,8 @@
                 if (!response.ok || !data.ok) throw new Error(data.error || "status unavailable");
                 render(data);
             } catch (error) {
-                setMetric("metric-api", "DOWN");
                 document.getElementById("last-refresh").innerHTML = `<span class="error">${esc(error.message)}</span>`;
+                document.getElementById("thread").innerHTML = message(`Status unavailable: ${error.message}`);
             } finally {
                 state.loading = false;
             }
