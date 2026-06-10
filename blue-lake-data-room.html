@@ -205,6 +205,33 @@
             letter-spacing: 0.04em;
         }
 
+        .file-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .file-link {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--white);
+            text-decoration: none;
+        }
+
+        .file-link strong {
+            color: var(--navy);
+        }
+
+        .file-link span {
+            color: var(--muted);
+            font-size: 13px;
+            text-align: right;
+        }
+
         ol,
         ul {
             margin: 12px 0 0;
@@ -392,6 +419,29 @@
                             <p>Finalists move to role/comp discussion. Promising candidates who are not ready are remembered for future cohorts.</p>
                         </div>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="band soft">
+            <div class="wrap grid">
+                <div>
+                    <h2>Files In This Room</h2>
+                    <p class="muted">These are the public Packet I files. They are candidate-safe and intentionally sanitized. Real applicant history, employee files, WhatsApp exports, answer keys, and internal scoring guides are not public.</p>
+                    <div class="actions">
+                        <a class="button" href="blue-lake-data-room/README.md">Open Manifest</a>
+                        <a class="button alt" href="blue-lake-packet-i-data-room.zip">Download Packet ZIP</a>
+                    </div>
+                </div>
+                <div class="file-list">
+                    <a class="file-link" href="blue-lake-data-room/01_business_brief.md"><strong>01 Business Brief</strong><span>Blue Lake / HomeEasy model</span></a>
+                    <a class="file-link" href="blue-lake-data-room/02_assessment_path.md"><strong>02 Assessment Path</strong><span>six stages</span></a>
+                    <a class="file-link" href="blue-lake-data-room/03_packet_i_questions.md"><strong>03 Packet I Questions</strong><span>application prompts</span></a>
+                    <a class="file-link" href="blue-lake-data-room/04_ai_and_integrity_policy.md"><strong>04 AI And Integrity Policy</strong><span>allowed use and live test</span></a>
+                    <a class="file-link" href="blue-lake-data-room/05_packet_ii_build_preview.md"><strong>05 Packet II Build Preview</strong><span>technical screen shape</span></a>
+                    <a class="file-link" href="blue-lake-data-room/sample-data/applications.json"><strong>applications.json</strong><span>fictional sample records</span></a>
+                    <a class="file-link" href="blue-lake-data-room/sample-data/events.json"><strong>events.json</strong><span>fictional event ledger</span></a>
+                    <a class="file-link" href="blue-lake-data-room/sample-data/school_routes.json"><strong>school_routes.json</strong><span>fictional source routes</span></a>
                 </div>
             </div>
         </section>
