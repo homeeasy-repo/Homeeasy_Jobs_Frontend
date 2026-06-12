@@ -12,7 +12,7 @@ Public packet. Candidate studies Blue Lake/HomeEasy and submits:
 - first fix,
 - system sketch,
 - Central Time overlap,
-- compensation bid.
+- start timing.
 
 ## 2. Packet II - Technical Build Screen
 

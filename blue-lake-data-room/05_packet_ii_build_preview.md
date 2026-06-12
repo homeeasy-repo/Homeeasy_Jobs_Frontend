@@ -27,7 +27,6 @@ Candidates send:
 
 - GitHub repository link.
 - Five to eight minute walkthrough recording.
-- Expected monthly compensation in USD.
 - Three interview windows overlapping US Central Time.
 
 ## Live Follow-Up

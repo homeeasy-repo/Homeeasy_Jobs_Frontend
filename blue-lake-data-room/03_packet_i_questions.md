@@ -10,7 +10,7 @@ Candidates submit Packet I through the public application page.
 4. What would you build or fix first?
 5. Sketch the system you would build for a continuous hiring or revenue captain.
 6. What US Central Time overlap can you reliably support?
-7. What is your expected monthly compensation in USD?
+7. What is the earliest date you could start if selected?
 
 ## What Good Looks Like
 
