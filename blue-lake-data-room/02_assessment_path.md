@@ -2,6 +2,8 @@
 
 The hiring path is staged. Candidates earn the next packet by doing the current one well.
 
+This is an entry-level academy pipeline. We are not evaluating experienced or lateral hires for this role at this time. Candidates advance by doing the assigned packet work, not by substituting a resume or prior portfolio for the screen.
+
 ## 1. Packet I - Business Read
 
 Public packet. Candidate studies Blue Lake/HomeEasy and submits:
@@ -26,6 +28,8 @@ Candidate builds a small Revenue Captain service from messy records. It must inc
 - idempotent worker,
 - edge-case tests,
 - README and walkthrough.
+
+Portfolio projects can provide background signal, but they do not replace the assigned build.
 
 ## 3. Live No-AI Technical Fundamentals
 

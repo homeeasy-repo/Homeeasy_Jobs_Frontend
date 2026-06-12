@@ -1,8 +1,10 @@
-# Blue Lake Revenue Operator Program - Packet I Data Room
+# Blue Lake Revenue Operator Academy - Packet I Data Room
 
 This is the public candidate-safe data room for Packet I.
 
 Packet I tests whether a candidate can study an incomplete business context, form a point of view, and explain what they would inspect or build first. It is not the private scoring guide, not an internal knowledge dump, and not a production data export.
+
+This cohort is academy-style and entry-level. Blue Lake is not taking experienced or lateral hires for this role at this time. Strong experienced candidates may be impressive and still be outside the current hiring lane.
 
 ## Files
 

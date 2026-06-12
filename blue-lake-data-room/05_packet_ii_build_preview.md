@@ -4,6 +4,8 @@ Packet II is sent by email after Packet I review. The exact prompt may change, b
 
 Build a small Revenue Captain service.
 
+This is not a portfolio review. Prior projects may provide background signal, but Packet II requires the specific assigned build. Experienced-hire submissions are outside this cohort.
+
 ## Inputs
 
 - `applications.json`

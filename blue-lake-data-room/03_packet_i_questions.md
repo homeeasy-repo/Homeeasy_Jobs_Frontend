@@ -2,6 +2,8 @@
 
 Candidates submit Packet I through the public application page.
 
+This application is for the entry-level academy cohort. Do not apply as an experienced-hire or lateral candidate for this role.
+
 ## Required Answers
 
 1. What have you built that actually worked?
@@ -11,6 +13,7 @@ Candidates submit Packet I through the public application page.
 5. Sketch the system you would build for a continuous hiring or revenue captain.
 6. What US Central Time overlap can you reliably support?
 7. What is the earliest date you could start if selected?
+8. Confirm that you understand this is an entry-level academy cohort, not an experienced-hire track.
 
 ## What Good Looks Like
 
@@ -25,3 +28,4 @@ Weak answers sound generic, summarize the page, or claim expertise without showi
 - Can they name missing evidence?
 - Can they explain how a system should behave when data is stale, duplicated, or incomplete?
 - Can they write in clear English without sounding like a generic AI summary?
+- Do they understand and accept the academy path rather than asking to be evaluated as a senior hire?

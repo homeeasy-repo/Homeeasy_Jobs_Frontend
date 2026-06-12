@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Lake Revenue Operator Program</title>
-    <meta name="description" content="A selective remote program for technical operators who can own revenue, systems, communication, and outcomes.">
+    <title>Blue Lake Revenue Operator Academy</title>
+    <meta name="description" content="An entry-level academy for technical operators who can be trained into Blue Lake's revenue, systems, communication, and ownership method.">
     <style>
         :root {
             --ink: #111827;
@@ -469,16 +469,16 @@
     <main>
         <section class="hero">
             <div class="hero-inner">
-                <div class="kicker">Revenue Operator Program</div>
+                <div class="kicker">Revenue Operator Academy</div>
                 <h1>Own revenue. Build the systems that scale it.</h1>
-                <p class="hero-copy">A selective remote program for early-career technical operators who can reason from code, communicate clearly, and take commercial ownership across real US real-estate workflows.</p>
+                <p class="hero-copy">An entry-level academy for technical operators who can reason from code, communicate clearly, and learn Blue Lake's method from the ground up across real US real-estate workflows.</p>
                 <div class="actions">
                     <a class="button primary" href="#apply">Start Structured Application</a>
                     <a class="button secondary" href="#dataroom">Open Packet I</a>
                 </div>
                 <div class="pipeline-strip" aria-label="Hiring pipeline">
                     <div><strong>Packet I</strong>Study the business and submit a point of view.</div>
-                    <div><strong>Candidate Record</strong>Qualified submissions enter the Hiring Captain pipeline.</div>
+                    <div><strong>Academy Fit</strong>This cohort is for entry-level candidates, not experienced or lateral hires.</div>
                     <div><strong>Technical Screen</strong>Code, systems, debugging, and no-AI fundamentals.</div>
                     <div><strong>Paid Trial</strong>Finalists work a bounded live problem under agreement.</div>
                 </div>
@@ -491,6 +491,7 @@
                     <h2 class="section-title">Commercial founder track. Technical ability is the floor.</h2>
                     <p class="lead">Blue Lake is the B2B revenue layer in a US real-estate operating system. HomeEasy is the B2C demand channel. The role sits between software, customer communication, data, and revenue operations.</p>
                     <p class="muted">The title is not a software engineer title because the job is larger than coding. The technical bar is high because the operator must own agentic workflows, debug production behavior, and reason from systems without waiting for a narrow task list.</p>
+                    <p class="muted">This is an academy-style entry-level cohort. Blue Lake is not evaluating experienced or lateral hires for this role at this time. The point is to train unusually strong early operators into our way of thinking, building, writing, and owning revenue.</p>
                 </div>
                 <div class="operator-list">
                     <article>
@@ -518,6 +519,7 @@
                 <div>
                     <h2 class="section-title">Packet I: Data Room</h2>
                     <p class="lead">Your first screen is whether you can learn a business from incomplete materials and form a point of view. Packet I is public; later packets cover the build screen, live no-AI fundamentals, commercial simulation, and paid sandbox trial.</p>
+                    <p class="muted">If you are seeking an experienced-hire or senior lateral role, this is not the right opening. Strong experienced candidates may be impressive and still be outside this cohort.</p>
                     <div class="inline-actions">
                         <a class="button dark" href="blue-lake-data-room.html">Open Full Data Room</a>
                         <a class="button outline" href="#apply">Submit Packet I Response</a>
@@ -567,6 +569,7 @@
                 <div>
                     <h2 class="section-title">The technical bar is real.</h2>
                     <p class="lead">Everyone who advances can code. The assessment looks for architectural judgment, debugging discipline, and whether you understand what your code is doing when AI helped produce it.</p>
+                    <p class="muted">Clear English reasoning matters because the work is US-facing and context-heavy. We test whether you can explain tradeoffs, write plainly, and reason in the business language of the workflow.</p>
                 </div>
                 <div class="evidence-grid">
                     <div class="evidence-cell">
@@ -611,6 +614,7 @@
                 <div>
                     <h2 class="section-title">Submit Packet I</h2>
                     <p class="lead">A strong application is specific. It shows what you built, how you think, where the revenue is, and what you would do first.</p>
+                    <p class="muted">This application is for the entry-level academy cohort only. Do not submit as an experienced-hire candidate; portfolio links alone will not satisfy later technical screens.</p>
                     <p class="muted">The form creates a candidate record for the Hiring Captain. If the endpoint is unavailable, email <strong>hr@homeeasy.com</strong> with the subject <strong>BlueLake Revenue Operator Application</strong>.</p>
                     <div class="inline-actions">
                         <a class="button outline" href="mailto:hr@homeeasy.com?subject=BlueLake%20Revenue%20Operator%20Application">Email Fallback</a>
@@ -640,6 +644,10 @@
                     <label class="checkline">
                         <input name="ai_policy_ack" type="checkbox" required>
                         <span>I understand that AI may be used for authorized building work, not to fake understanding or correspondence.</span>
+                    </label>
+                    <label class="checkline">
+                        <input name="academy_ack" type="checkbox" required>
+                        <span>I understand this is an entry-level academy cohort, not an experienced-hire or lateral role.</span>
                     </label>
                     <button class="dark" type="submit">Submit Application</button>
                     <div id="form-status" class="status" aria-live="polite">Ready for Packet I submission.</div>
@@ -681,6 +689,7 @@
             statusBox.textContent = "Submitting...";
             const data = Object.fromEntries(new FormData(form).entries());
             data.ai_policy_ack = Boolean(data.ai_policy_ack);
+            data.academy_ack = Boolean(data.academy_ack);
             data.source = "github-pages-blue-lake";
             data.utm = collectUtm();
 

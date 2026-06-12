@@ -4,6 +4,8 @@ AI tools are allowed for authorized building work.
 
 AI tools are not allowed to fake understanding, fabricate experience, or manufacture correspondence.
 
+The role also tests whether the candidate can explain their own thinking in clear English under live pressure. AI-polished writing is not enough.
+
 ## Allowed
 
 - Use AI to brainstorm implementation options.

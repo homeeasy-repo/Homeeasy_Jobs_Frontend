@@ -25,6 +25,10 @@ The operator owns the next action in a revenue workflow:
 - make the next action visible,
 - protect revenue from leaking through silence, stale state, or bad assumptions.
 
+## Academy Cohort
+
+This role is currently an academy-style entry-level path. Blue Lake is not taking experienced or lateral hires for this cohort. The aim is to train unusually strong early operators into the company's way of thinking, writing, building, and owning revenue from the ground up.
+
 ## What Strong Candidates Notice
 
 Strong candidates should notice that the hardest parts are not only code. The hard parts are state, context, incentives, evidence quality, and deciding when automation should act versus when a human should be pulled in.
